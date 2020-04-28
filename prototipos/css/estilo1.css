@@ -1,7 +1,35 @@
-/*div {
+/*.row {
 	border: black solid 1px;
-}*/
-
+}
+*/
 .logotipo {
 	width: 50%;
+}
+
+body {
+	background-color: #120424;
+}
+
+.cabecera, .pie, .navegador-inferior {
+	/*background-color: #120128;*/ /*morado*/
+	background-color: #6015c1; /*Morado claro*/
+}
+
+.titulo-cabecera {
+	color: white;
+}
+
+.cabecera, .navegador-superior, .navegador-inferior, .sidebar-contenido, .titulo-seccion {
+	background-color: #6015c1; /*Morado claro*/
+	margin-bottom: 0.5rem;
+}
+
+.contenido-web {
+	background-color:  #9a54ff;
+	margin-bottom: 0.5rem;
+}
+
+.articulo {
+	margin-bottom: 0.5rem;
+
 }

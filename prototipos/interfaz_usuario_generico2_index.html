@@ -18,22 +18,28 @@
     <div class="container">
 
       <!-- CABECERA -->
-      <div class="row align-items-center header">
+      <div class="row align-items-center rounded cabecera">
         <!-- Logotipo -->
         <div class="col-sm-2">
           <img class="img-fluid" src="media/PrototipoLogotipo_Cuidandomiciudad_2.png">
         </div>
 
         <!-- Título Web -->
-        <div class="col-sm-10 text-center">
-          <p class="h2">CuidandoMiCiudad</p>
+        <div class="col-sm-10 text-center titulo-cabecera">
+          <p class="h2 font-weight-bolder">CuidandoMiCiudad</p>
+          <blockquote class="blockquote text-center">
+            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          </blockquote>
         </div>
 
       </div>
 
-      <div class="row nav">
+
+      <!-- NAVEGADOR SUPERIOR -->
+      <div class="row rounded navegador-superior">
         <!-- Buscador -->
-        <div class="col">
+        <div class="col-4">
           <div class="input-group">
                 <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar..." aria-describendby="boton-buscar">
                 <div class="intput-group-append">
@@ -42,27 +48,159 @@
               </div>
         </div>
 
-        <!-- Avisos -->
-        <div class="col">
-          <div class="row justify-content-end">
-            <div class="col-2">
-              <img class="img-fluid" src="media/bell.svg">
+        <!-- Perfil -->
+        <div class="col-8 text-right">
+          <div class="media">
+            <div class="media-body">
+              <p class="mt-0 mb-1 text-right text-white">LuxuS7</p>
             </div>
-            <div class="col-2">
+            <img src="media/user.svg" class="ml-3" alt="...">
+            <div class="media">
+              <img class="img-fluid" src="media/bell.svg">
               <img class="img-fluid" src="media/message-square.svg">
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Perfil -->
-        <div class="col">
-          <div class="media">
-            <div class="media-body">
-              <p class="mt-0 mb-1 text-right">LuxuS7</p>
+      <!-- NAVEGADOR INFERIOR -->
+      <!-- TODO: Crear un navegador inferior, que se esconda cuando el dispositivo se pequeño -->
+      <div class="row rounded navegador-inferior">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-md navbar-light text-white">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="#">Noticias</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="#">Incidencias</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="#">Propuestas</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="#">Proyectos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="#">Información</a>
+                </li>
+              </ul>
             </div>
-            <img src="media/user.svg" class="ml-3" alt="...">
-          </div>
+          </nav>
         </div>
+      </div>
+
+      <!-- CUERPO PÁGINA -->
+      <!-- TODO: Dividir el cuerpo en dos, para un sidebar responsive a la izquierda y el cuerpo de la página quede a la derecha -->
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-3 rounded sidebar-contenido">
+          <ul class="nav flex-column list-group">
+            <li class="nav-item list-group-item list-group-item-action rounded">
+              <a class="nav-link activate" href="#">Inicio</a>
+            </li>
+
+            <!-- Sección desplegable -->
+            <li class="nav-item dropdown list-group-item list-group-item-action rounded">
+              <a class="nav-link dropdow-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">Incidencias</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Ver</a>
+                <a class="dropdown-item" href="#">Añadir</a>
+                <a class="dropdown-item" href="#">Actualizar</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Eliminar</a>
+              </div>
+            </li>
+
+            <li class="nav-item list-group-item list-group-item-action rounded">
+              <a class="nav-link" href="#">Propuestas</a>
+            </li>
+            <li class="nav-item list-group-item list-group-item-action rounded">
+              <a class="nav-link" href="#">Proyectos</a>
+            </li>
+
+            <!-- Sección Prototipos -->
+            <li class="nav-item dropdown list-group-item list-group-item-action rounded">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">Prototipos</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="interfaz_usuario_generico.html">Protoripo 1</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contenido de la página -->
+        <div class="col-9 rounded contenido-web">
+          <!-- Migas de pan -->
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="#">Incidencias</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Añadir</li>
+            </ol>
+          </nav>
+
+          <!-- Título Sección -->
+          <div class="row">
+            <div class="col titulo-seccion text-white">
+              
+              <div class="h1">Título Sección</div>
+            </div>
+          </div>
+          <div class="row articulo">
+            <div class="col">
+              <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>            
+          </div>
+          <div class="row articulo">
+            <div class="col">
+              <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>            
+          </div>
+        
+          
+        </div>
+      </div>      
+      
+
+      <!-- PIE DE PÁGINA -->
+      <div class="row rounded pie text-white justify-content-between">
+        <div class="col">Lluís Aracil Sabater</div>
+        <div class="col">
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item">
+              <img class="img-fluid" src="media/facebook.png">
+            </li>
+            <li class="list-group-item">
+              <img class="img-fluid" src="media/twitter.png">
+            </li>
+            <li class="list-group-item">
+              <img class="img-fluid" src="media/youtube.png">
+            </li>
+          </ul>
+        </div>
+        <div class="col text-right">Prototipo-2 v.0.5</div>
       </div>
 
     </div>
@@ -72,5 +210,8 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- JavaScript Personal -->
+    <script src="js/main_prototipo_dos.js"></script>
   </body>
 </html>
