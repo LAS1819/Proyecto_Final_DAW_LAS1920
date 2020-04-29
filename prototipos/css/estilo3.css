@@ -2,7 +2,29 @@
 	border: solid black 1px;
 }*/
 
-/*Resumen*/
+.chivato-contenido {
+	border: solid 1px black;
+}
+
+body {
+	background-color: #6a686b;
+}
+
+.cabecera-contenido, .navegador-inferior,
+.pagina-contenido .pagina-contenido-titulo,
+.pie-contenido, .pie-redes {
+	background: #1e2229;
+}
+
+.pie-redes img {
+	width: 50%;
+}
+
+
+
+
+
+
 
 /*La regla arroba @keyframes permite a los autores controlar los pasos intermedios en una secuencia de animación CSS mediante el establecimiento de keyframes (o puntos de trayectoria) a lo largo de la secuencia de animación que debe ser alcanzado por determinados puntos durante la animación. Esto le da un control más específico sobre los pasos intermedios de la secuencia de animación que se obtiene al dejar que el navegador maneje todo automáticamente. (https://developer.mozilla.org/es/docs/Web/CSS/@keyframes) */
 
@@ -213,7 +235,7 @@ body {
 	margin-top: 4px;
 }
 
-.sidebar-wrapper .sidebar-header .user.info .user-status i {
+.sidebar-wrapper .sidebar-header .user-info .user-status i {
 	font-size: 8px;
 	margin-right: 4px;
 	color: #5cb85c;

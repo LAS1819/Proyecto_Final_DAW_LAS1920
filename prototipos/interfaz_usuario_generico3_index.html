@@ -31,9 +31,10 @@
 
       <!-- Contenido SIDEBAR -->
       <nav id="sidebar" class="sidebar-wrapper chivato">
-        <div class="sidebar-content chivato">
-          <div class="sidebar-brand chivato">
-            <a href="#">Pro Sidebar</a>
+        <div class="sidebar-content">
+          <div class="sidebar-brand">
+            <img class="img-fluid" src="media/PrototipoLogotipo_Cuidandomiciudad_2.png">
+            <a href="#">CuidandoMiCiudad</a>
             <div id="close-sidebar">
               <i class="fas fa-times"></i>
             </div>
@@ -79,8 +80,8 @@
               </li>
               <li class="sidebar-dropdown">
                 <a href="#">
-                  <i class="fa fa-tachometer-alt"></i>
-                  <span>Dashboard</span>
+                  <i class="fas fa-newspaper"></i>
+                  <span>Noticias</span>
                   <span class="badge badge-pill badge-warning">New</span>
                 </a>
 
@@ -88,35 +89,35 @@
                 <div class="sidebar-submenu chivato">
                   <ul>
                     <li>
-                      <a href="#">Dashboard 1
-                        <span class="badge badge-pill badge-success">Pro</span>
+                      <a href="#">Polítca
+                        <span class="badge badge-pill badge-success">2</span>
                       </a>
                     </li>
                     <li>
-                      <a href="#">Dashboard 2</a>
+                      <a href="#">Cultura</a>
                     </li>
                     <li>
-                      <a href="#">Dashboard 3</a>
+                      <a href="#">Sociedad</a>
                     </li>
                   </ul>
                 </div>
               </li>
               <li class="sidebar-dropdown">
                 <a href="#">
-                  <i class="fa fa-shopping-cart"></i>
-                  <span>E-Commerce</span>
-                  <span class="badge badge-pill badge-danger">3</span>
+                  <i class="fas fa-hand-paper"></i>
+                  <span>Mis Incidencias</span>
+                  <span class="badge badge-pill badge-danger">1</span>
                 </a>
                 <div class="sidebar-submenu">
                   <ul>
                     <li>
-                      <a href="#">Products</a>
+                      <a href="#">Ver</a>
                     </li>
                     <li>
-                      <a href="#">Orders</a>
+                      <a href="#">Nueva</a>
                     </li>
                     <li>
-                      <a href="#">Credit</a>
+                      <a href="#">Eliminar</a>
                     </li>
                   </ul>
                 </div>
@@ -233,10 +234,154 @@
         </div>
       </nav>
 
-      <!-- CONTENIDO DE LA PÁGINA -->
+
+      <!-- -------------------------CONTENIDO DE LA PÁGINA------------------------------- -->
       <main class="page-content">
         <div class="container-fluid">
-          <h2>PROTOTIPO IU 3</h2>
+          <!-- ----------Cabecera------- -->
+          <div class="row align-items-center cabecera-contenido">
+            <!-- --------logo--------- -->
+            <!-- <div class="col-sm-2 col-md-3 cabecera-contenido-logo chivato-contenido">
+              <img class="img-fluid" src="media/PrototipoLogotipo_Cuidandomiciudad_2.png">
+            </div> -->
+            <!-- ------------título------------ -->
+            <div class="col text-center text-white cabecera-contenido-titulo">
+              <p class="h2 font-weight-bolder">CuidandoMiCiudad</p>
+              <blockquote class="blockquote text-center">
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+              </blockquote>
+            </div>
+          </div>
+
+          <!-- ---------Navegador---------- -->
+          <div class="row navegador-inferior">
+            <div class="col-8">
+                <nav class="navbar navbar-expand-md navbar-light text-white">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item active">
+                        <a class="nav-link text-warning" href="#">Inicio <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Noticias</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Incidencias</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Propuestas</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Proyectos</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Información</a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+              <div class="col-4 mr-auto justify-content-center text-right">
+                <a href="#">
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>Logout</span>
+                </a>
+              </div>
+            </div>
+
+
+            <!-- ----------CONTENIDO-PÁGINA--------- -->
+            <div class="row pagina-contenido chivato-contenido">
+              <div class="col">
+                <div class="row pagina-contenido-migas">
+                  <div class="col">
+                    <!-- Migas de pan -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                            <li class="breadcrumb-item"><a href="#">Incidencias</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Añadir</li>
+                        </ol>
+                    </nav>
+                  </div>
+                </div>
+                <div class="row pagina-contenido-titulo">
+                  <div class="col">
+                    <div class="h1 text-white">Título Sección</div>
+                  </div>
+                </div>
+
+                <div class="row pagina-contenido-cuerpo">
+                  <div class="col">
+                    <div class="row pagina-contenido-cuerpo-articulo">
+                      <div class="col">
+                        <div class="card">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row pagina-contenido-cuerpo-articulo">
+                      <div class="col">
+                        <div class="card">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row pagina-contenido-cuerpo-articulo">
+                      <div class="col">
+                        <div class="card">
+                          <img src="..." class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- PIE DE PÁGINA -->
+            <div class="row pie-contenido justify-content-between text-white chivato-contenido">
+              <div class="col-6">Lluís Aracil Sabater</div>
+              <div class="col-6 text-right">Prototipo-3 v.0.5</div>
+            </div>
+
+            <div class="row pie-redes justify-content-center chivato-contenido">
+              <div class="col-sm-6 col-md-3">
+                <ul class="list-group list-group-horizontal">
+                  <li class="list-group-item text-center">
+                    <img class="img" src="media/facebook.png">
+                  </li>
+                  <li class="list-group-item text-center">
+                    <img class="img" src="media/twitter.png">
+                  </li>
+                  <li class="list-group-item text-center">
+                    <img class="img" src="media/youtube.png">
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+
         </div>
       </main>
     </div>
@@ -248,7 +393,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- JQuery -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+        crossorigin="anonymous"></script>
 
     <!-- Mi javascript -->
     <script src="js/main_prototipo_tres.js" type="text/javascript"></script>
