@@ -33,3 +33,12 @@ body {
 	margin-bottom: 0.5rem;
 
 }
+
+/*Quitar texto en sidebar*/
+@media screen and (max-width: 576px) {
+	.texto-sidebar {
+		display: none;
+	}
+
+	
+}
