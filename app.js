@@ -22,6 +22,14 @@ app.set('view engine', 'handlebars');
 // Configuramos el puerto
 app.set('port', (process.env.PORT || 3000));
 
+
+// La url o ruta raíz(/) responde con la renderización de handlebars
+app.get('/', (req, res) => {
+	res.render('index', {
+		content: 'Esto es algo de contenido'	
+	});
+});
+
 // Dejamos el servidor a la escucha
 app.listen(app.get('port'), () => {
 	console.log('Server started on port ' + app.get('port'));
@@ -35,10 +43,7 @@ app.listen(app.get('port'), () => {
 // }));
 
 
-// La url o ruta raíz(/) responde con la renderización de handlebars
-app.get('/', (req, res) => {
-	res.render('index');
-});
+
 
 // Nuestro servidor escucha desde el puerto 3000
 // app.listen(3000, () => {

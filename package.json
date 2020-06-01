@@ -2,7 +2,7 @@
   "name": "proyecto_final_daw_las1920",
   "version": "1.0.0",
   "description": "Repositorio del proyecto final del Ciclo Superior de DAW (iesmarenostrum)",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
