@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/LAS1819/Proyecto_Final_DAW_LAS1920/issues"
   },
-  "homepage": "https://github.com/LAS1819/Proyecto_Final_DAW_LAS1920#readme"
+  "homepage": "https://github.com/LAS1819/Proyecto_Final_DAW_LAS1920#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
