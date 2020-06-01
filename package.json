@@ -1,0 +1,26 @@
+{
+  "name": "proyecto_final_daw_las1920",
+  "version": "1.0.0",
+  "description": "Repositorio del proyecto final del Ciclo Superior de DAW (iesmarenostrum)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LAS1819/Proyecto_Final_DAW_LAS1920.git"
+  },
+  "keywords": [
+    "nodejs",
+    "app",
+    "express",
+    "mysql",
+    "handlebars"
+  ],
+  "author": "Lluís Aracil Sabater <luxuszigard@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LAS1819/Proyecto_Final_DAW_LAS1920/issues"
+  },
+  "homepage": "https://github.com/LAS1819/Proyecto_Final_DAW_LAS1920#readme"
+}
