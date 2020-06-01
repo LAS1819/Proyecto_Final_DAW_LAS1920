@@ -1,27 +1,46 @@
 // app.js
 const express = require('express');
-const app = express();
-
 // Requerimos handlebars
 const hbs = require('express-handlebars');
+// Requerimos path
+const path = require('path');
+
+// Iniciamos conexión
+const app = express();
+
+
+
+// Configuramos el acceso a las vistas
+app.set('views', path.join(__dirname, 'views'));
 
 // Configuramos view engine para handlebars
-app.set('view engine', 'hbs');
+app.engine('handlebars', hbs({defaultLayout: 'default'}));
 
-app.engine('hbs', hbs( {
-	extname: 'hbs',
-	defaultView: 'default',
-	layoutsDir: __dirname + '/views/default/',
-	partialsDir: __dirname + '/views/partials/'
-}));
+// Advertimos de la extensión que usaremos en los archivos handlebars (hbs)
+app.set('view engine', 'handlebars');
+
+// Configuramos el puerto
+app.set('port', (process.env.PORT || 3000));
+
+// Dejamos el servidor a la escucha
+app.listen(app.get('port'), () => {
+	console.log('Server started on port ' + app.get('port'));
+})
+
+// app.engine('hbs', hbs({
+// 	extname: 'hbs',
+// 	defaultView: 'default',
+// 	layoutsDir: __dirname + '/views/default/',
+// 	partialsDir: __dirname + '/views/partials/'
+// }));
 
 
-// La url o ruta raíz(/) responde con un "Hello World!"
+// La url o ruta raíz(/) responde con la renderización de handlebars
 app.get('/', (req, res) => {
-	res.send('Hello World!');
+	res.render('index');
 });
 
 // Nuestro servidor escucha desde el puerto 3000
-app.listen(3000, () => {
-	console.log('Apliación escuchando desde el puerto 3000...');
-})
+// app.listen(3000, () => {
+// 	console.log('Apliación escuchando desde el puerto 3000...');
+// });
