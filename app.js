@@ -1,6 +1,19 @@
 // app.js
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+
+// Requerimos handlebars
+const hbs = require('express-handlebars');
+
+// Configuramos view engine para handlebars
+app.set('view engine', 'hbs');
+
+app.engine('hbs', hbs( {
+	extname: 'hbs',
+	defaultView: 'default',
+	layoutsDir: __dirname + '/views/default/',
+	partialsDir: __dirname + '/views/partials/'
+}));
 
 
 // La url o ruta raíz(/) responde con un "Hello World!"

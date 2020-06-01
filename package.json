@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/LAS1819/Proyecto_Final_DAW_LAS1920#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4"
   }
 }
