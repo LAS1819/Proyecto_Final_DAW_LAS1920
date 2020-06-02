@@ -49,15 +49,24 @@ app.use(express.urlencoded({extended: false}));
 // Para enviar y recibir JSON
 app.use(express.json());
 
-//-------------VARIABLES GLOBALES--------------------
+// TO DO: Añadir imágenes con MULTER (instalar Multer y requerir)
 
+//-------------VARIABLES GLOBALES--------------------
+// Futura función
+app.use((req, res, next) => {
+
+	next();
+});
 
 //-------------RUTAS----------------------------------
 // Advertimos que use las rutas
-app.use('/', routes);
+// app.use('/', routes);
+app.use(require('./routes'));
+app.use(require('./routes/authentication'));
 
 //--------------PUBLIC-------------------------------
-
+// Donde está el CSS, Javascript, fuentes, etc...
+app.use(express.static(path.join(__dirname, 'public')));
 
 //-------------INICIANDO SERVIDOR-------------------
 // Dejamos el servidor a la escucha en el puerto definido
