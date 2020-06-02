@@ -7,8 +7,8 @@ const router = express.Router();
 // GET HOME PAGE
 router.get('/', (req, res, next) => {
 	res.render('index', {
-		title: 'Página principal',
-		content: 'Esto es algo de contenido de la página principal'	
+		title: 'Página principal'
+		// content: 'Esto es algo de contenido de la página principal'	
 	});
 });
 
