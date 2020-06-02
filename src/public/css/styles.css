@@ -5,4 +5,15 @@ body {
 
 .cabecera {
 	background-color: #2A2438;
+	font-family: Neucha;
+	color: #995be3;
+}
+
+
+.cabecera-logo img{
+
+}
+
+.navegador .navbar {
+	background-color: #411E8F;
 }
