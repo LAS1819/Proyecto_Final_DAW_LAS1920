@@ -28,7 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 // helpers -> Para utilizar funciones de handlebars. Por si queremos procesar fechas, por ejemplo.
 app.engine('.hbs', hbs({
 	extname: 'hbs',
-	defaultLayout: 'default', layoutsDir: __dirname + '/views/layouts/',
+	defaultLayout: 'default',
 	layoutsDir: path.join(app.get('views'), 'layouts'),
 	partialsDir: path.join(app.get('views'), 'partials'),
 	helpers: require('./lib/handlebars')
