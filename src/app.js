@@ -21,10 +21,21 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 
 // Configuramos view engine para handlebars
-app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'default', layoutsDir: __dirname + '/views/layouts/'}));
+// extname -> tipo de extensión handlebars que usamos
+// defaultLayout -> layout pot defecto que tendremos preparado
+// layoutsDir -> Directorio donde guardamos los layouts
+// partialsDir -> Directorio donde guardamos los partials
+// helpers -> Para utilizar funciones de handlebars. Por si queremos procesar fechas, por ejemplo.
+app.engine('.hbs', hbs({
+	extname: 'hbs',
+	defaultLayout: 'default', layoutsDir: __dirname + '/views/layouts/',
+	layoutsDir: path.join(app.get('views'), 'layouts'),
+	partialsDir: path.join(app.get('views'), 'partials'),
+	helpers: require('./lib/handlebars')
+}));
 
 // Advertimos de la extensión que usaremos en los archivos handlebars (hbs)
-app.set('view engine', 'hbs');
+app.set('view engine', '.hbs');
 // Configuramos el puerto
 app.set('port', (process.env.PORT || 3000));
 
@@ -32,24 +43,21 @@ app.set('port', (process.env.PORT || 3000));
 // Decimos que use morgan y el parámetro 'dev' para que nos muestre cierto tipo de datos por consola
 app.use(morgan('dev'));
 
+// urlencoded -> Para aceptar los datos que se envían desde el formulario
+// extended: false -> Para evitar datos pesados (¿No se puede enviar imagen?)
+app.use(express.urlencoded({extended: false}));
+// Para enviar y recibir JSON
+app.use(express.json());
 
 //-------------VARIABLES GLOBALES--------------------
 
+
 //-------------RUTAS----------------------------------
+// Advertimos que use las rutas
+app.use('/', routes);
 
 //--------------PUBLIC-------------------------------
 
-
-
-// Advertimos que use las rutas
-app.use('/', routes);
-// La url o ruta raíz(/) responde con la renderización de handlebars
-app.get('/', (req, res) => {
-	res.render('index', {
-		title: 'Página principal',
-		content: 'Esto es algo de contenido'	
-	});
-});
 
 //-------------INICIANDO SERVIDOR-------------------
 // Dejamos el servidor a la escucha en el puerto definido
