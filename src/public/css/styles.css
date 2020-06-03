@@ -11,10 +11,22 @@ body {
 }
 
 .subtitulo {
-	font-family: Ubuntu;
+	font-family: Caveat;
 	margin-top: -1em;
 }
 
 .navegador {
+	background-color: #411E8F;
+}
+
+.navegador-lateral {
+	background-color: #2A2438;
+}
+
+.contenido-pagina {
+	/*padding-right: 0;*/
+}
+
+.pie-pagina {
 	background-color: #411E8F;
 }
