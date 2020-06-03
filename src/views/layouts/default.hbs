@@ -21,7 +21,7 @@
 </head>
 <body>
 		
-	<div class="container-fluid text-white contenido-pagina">
+	<div class="container-fluid contenido-pagina">
 		<div class="row">
 			{{> header }}	
 		</div>
@@ -30,11 +30,25 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-2 navegador-lateral">
-				Navegador lateral
-			</div>
-			<div class="col-10">
-				{{{body}}}	
+			<div class="wrapper">
+				<!-- Navegador Lateral -->
+				<nav id="sidebar" class="navegador-lateral">
+					{{> sidebar}}
+				</nav>
+
+				<!-- Contenido de página -->
+				<div id="content">
+					<nav class="navbar navbar-expand-lg navbar-light">
+						<div class="container-fluid">
+							
+							<button type="button" id="sidebarCollapse" class="btn btn-info">
+								<i class="fas fa-align-left"></i>
+								<span>Toggle Sidebar</span>
+							</button>
+						</div>
+					</nav>
+					{{{body}}}	
+				</div>
 			</div>
 		</div>
 

@@ -2,6 +2,7 @@
 body {
 	background-color: #352f44;
 	font-family: Ubuntu;
+	color: white;
 }
 
 .cabecera {
@@ -20,13 +21,95 @@ body {
 }
 
 .navegador-lateral {
-	background-color: #2A2438;
+	/*background-color: #2A2438;*/
 }
 
 .contenido-pagina {
 	/*padding-right: 0;*/
 }
 
+.titulo {
+	font-family: Neucha;
+}
+
 .pie-pagina {
 	background-color: #411E8F;
 }
+/*----------Estilos Contenido y Sidebar Colapsable---------*/
+.wrapper {
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+#sidebar {
+	background: #2A2438;
+	transition: all 0.3s;
+
+	min-width: 250px;
+	max-width: 250px;
+	min-height: 54vh;
+}
+
+#sidebar.active {
+	margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+	padding: 20px; 
+}
+
+/*------Cuando sea menor a 768px, invertimos el estilo del didebar*/
+@media (max-width: 768px) {
+	#sidebar {
+		margin-left: -250;
+	}
+
+	#sidebar.active {
+		margin-left: 0;
+	}
+}
+
+
+/*-------Añadimos separación al pequeño triángulo de los dropdown---*/
+a[data-toggle="collapse"] {
+	position: relative;
+}
+
+.dropdown-toggle::after {
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+}
+
+/*-----------Estilos del sidebar---------------------*/
+
+.components a, a:hover, a:focus{
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+#sidebar ul.components{
+	padding: 20px 0;
+	border-bottom: 1px solid #fff;
+}
+
+#sidebar ul p {
+	color: #995be3;
+	padding: 10px;
+}
+
+#sidebar ul li a {
+	padding: 10px;
+	font-size: 1.1em;
+	display: block;
+}
+
+#sidebar ul li a:hover {
+	color: #310A5D;
+	background: #995be3;
+}
+/*------------------------------*/
