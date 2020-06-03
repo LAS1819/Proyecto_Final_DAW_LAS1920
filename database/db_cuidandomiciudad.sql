@@ -118,8 +118,8 @@ CREATE TABLE publicaciones(
 	fcPublicacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	totVotos INT(6) NOT NULL DEFAULT 0,
 		CONSTRAINT cp_publicacion PRIMARY KEY (idPublicacion, idUsuario),
-		CONSTRAINT ca_publicacion FOREIGN KEY (idPublicacion)
-			REFERENCES publicaciones(idPublicacion)
+		CONSTRAINT ca_pub_usuario FOREIGN KEY (idUsuario)
+			REFERENCES usuarios(idUsuario)
 );
 
 -- Tabla COMENTARIOS
@@ -130,9 +130,9 @@ CREATE TABLE comentarios(
 	menComentario TEXT NOT NULL,
 	fcComentario TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		CONSTRAINT cp_comentario PRIMARY KEY (idComentario, idUsuario, idPublicacion),
-		CONSTRAINT ca_publicacion FOREIGN KEY (idPublicacion)
+		CONSTRAINT ca_com_publicacion FOREIGN KEY (idPublicacion)
 			REFERENCES publicaciones(idPublicacion),
-		CONSTRAINT ca_usuario FOREIGN KEY (idUsuario)
+		CONSTRAINT ca_com_usuario FOREIGN KEY (idUsuario)
 			REFERENCES usuarios(idUsuario)
 );
 
@@ -144,7 +144,7 @@ CREATE TABLE ofertas(
 	fcOferta TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	tipOferta ENUM('Ayuda', 'Compañía', 'Pasear', 'Buscar', 'Pérdida'),
 		CONSTRAINT cp_oferta PRIMARY KEY (idOferta, idUsuario),
-		CONSTRAINT ca_usuario FOREIGN KEY (idUsuario)
+		CONSTRAINT ca_ofe_usuario FOREIGN KEY (idUsuario)
 			REFERENCES usuarios(idUsuario)
 );
 
@@ -154,9 +154,9 @@ CREATE TABLE demanda(
 	idUsuario INT(6) NOT NULL,
 	fcDemanda TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		CONSTRAINT cp_demanda PRIMARY KEY (idOferta, idUsuario),
-		CONSTRAINT ca_oferta FOREIGN KEY (idOferta)
+		CONSTRAINT ca_dem_oferta FOREIGN KEY (idOferta)
 			REFERENCES ofertas(idOferta),
-		CONSTRAINT ca_usuario FOREIGN KEY (idUsuario)
+		CONSTRAINT ca_dem_usuario FOREIGN KEY (idUsuario)
 			REFERENCES usuarios(idUsuario)
 );
 
@@ -176,9 +176,9 @@ CREATE TABLE asociaciones(
 	desAsociacion VARCHAR(200) NOT NULL,
 	numSocios INT(6) NOT NULL DEFAULT 0,
 		CONSTRAINT cp_asociacion PRIMARY KEY (idAsociacion, idUsuario),
-		CONSTRAINT ca_usuario FOREIGN KEY (idUsuario)
+		CONSTRAINT ca_aso_usuario FOREIGN KEY (idUsuario)
 			REFERENCES usuarios(idUsuario),
-		CONSTRAINT cu_asociacion UNIQUE KEY (nomAsociacion)
+		CONSTRAINT cu_aso_asociacion UNIQUE KEY (nomAsociacion)
 );
 
 -- Tabla UNE
@@ -187,9 +187,9 @@ CREATE TABLE une(
 	idUsuario INT(6) NOT NULL,
 	fcUnion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		CONSTRAINT cp_une PRIMARY KEY (idAsociacion, idUsuario),
-		CONSTRAINT ca_asociacion FOREIGN KEY (idAsociacion)
+		CONSTRAINT ca_une_asociacion FOREIGN KEY (idAsociacion)
 			REFERENCES asociaciones(idAsociacion),
-		CONSTRAINT ca_usuario FOREIGN KEY (idUsuario)
+		CONSTRAINT ca_une_usuario FOREIGN KEY (idUsuario)
 			REFERENCES usuarios(idUsuario)
 );
 
@@ -201,11 +201,11 @@ CREATE TABLE dona(
 	fcDonacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	cantDonacion DECIMAL(6, 2) NOT NULL,
 		CONSTRAINT cp_dona PRIMARY KEY (idDonacion, idAsociacion),
-		CONSTRAINT ca_donacion FOREIGN KEY (idDonacion)
+		CONSTRAINT ca_dona_donacion FOREIGN KEY (idDonacion)
 			REFERENCES donaciones(idDonacion),
-		CONSTRAINT ca_asociacion FOREIGN KEY (idAsociacion)
+		CONSTRAINT ca_dona_asociacion FOREIGN KEY (idAsociacion)
 			REFERENCES asociaciones(idAsociacion),
-		CONSTRAINT vnn_usuario FOREIGN KEY (idUsuario)
+		CONSTRAINT vnn_dona_usuario FOREIGN KEY (idUsuario)
 			REFERENCES usuarios(idUsuario)
 );
 
@@ -225,9 +225,9 @@ CREATE TABLE contacta (
 	idAdministrador INT(6) NOT NULL,
 	fcContacto TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	menContacto TEXT NOT NULL,
-		CONSTRAINT cp_contacto PRIMARY KEY (idUsuario, idAdministrador)
-		CONSTRAINT ca_usuario FOREIGN KEY (idUsuario)
+		CONSTRAINT cp_contacto PRIMARY KEY (idUsuario, idAdministrador),
+		CONSTRAINT ca_con_usuario FOREIGN KEY (idUsuario)
 			REFERENCES usuarios(idUsuario),
-		CONSTRAINT ca_administrador FOREIGN KEY (idAdministrador)
+		CONSTRAINT ca_con_administrador FOREIGN KEY (idAdministrador)
 			REFERENCES administrador(idAdministrador)
 );
