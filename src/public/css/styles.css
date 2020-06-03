@@ -1,6 +1,7 @@
 /*styles.css*/
 body {
 	background-color: #352f44;
+	font-family: Ubuntu;
 }
 
 .cabecera {
@@ -9,11 +10,11 @@ body {
 	color: #995be3;
 }
 
-
-.cabecera-logo img{
-
+.subtitulo {
+	font-family: Ubuntu;
+	margin-top: -1em;
 }
 
-.navegador .navbar {
+.navegador {
 	background-color: #411E8F;
 }
