@@ -112,4 +112,9 @@ a[data-toggle="collapse"] {
 	color: #310A5D;
 	background: #995be3;
 }
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+	color: #fff;
+	background: #995be3;
+}
 /*------------------------------*/
