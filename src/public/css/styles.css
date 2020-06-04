@@ -117,4 +117,10 @@ a[data-toggle="collapse"] {
 	color: #fff;
 	background: #995be3;
 }
+
+#sidebar ul ul a {
+	font-size: 0.9 !important;
+	padding-left: 30px;
+	background: #411E8F;
+}
 /*------------------------------*/
