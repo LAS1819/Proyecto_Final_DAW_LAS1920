@@ -231,3 +231,19 @@ CREATE TABLE contacta (
 		CONSTRAINT ca_con_administrador FOREIGN KEY (idAdministrador)
 			REFERENCES administrador(idAdministrador)
 );
+
+
+-----------------------------------------------------------------
+---------NUEVAS TABLAS AÑADIDAS QUE DIFIEREN DEL MODELO LÓGICO Y E-R-----------
+-------TABLA CIUDADES------
+CREATE TABLE ciudades (
+	idCiudad INT(6) NOT NULL AUTO_INCREMENT,
+	codPostal VARCHAR(6) NOT NULL,
+	proCiudad VARCHAR(60) NOT NULL,
+	nomCiudad VARCHAR(60) NOT NULL,
+		CONSTRAINT cp_ciudad PRIMARY KEY (idCiudad),
+		CONSTRAINT cu_ciudad UNIQUE KEY (codPostal)
+);
+
+--TO DO: Crear constraints para las tablas a las que se dirige
+-- la tabla CIUDADES
