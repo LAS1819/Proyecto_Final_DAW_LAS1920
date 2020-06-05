@@ -39,7 +39,7 @@ body {
 .wrapper {
 	display: flex;
 	width: 100%;
-	align-items: stretch;
+	/*align-items: stretch;*/
 }
 
 #sidebar {
@@ -49,18 +49,19 @@ body {
 	min-width: 250px;
 	max-width: 250px;
 	min-height: 54vh;
+
+	/*position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;*/
 }
 
 #sidebar.active {
 	margin-left: -250px;
 }
 
-#sidebar .sidebar-header {
-	padding: 20px; 
-}
-
 /*------Cuando sea menor a 768px, invertimos el estilo del didebar*/
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
 	#sidebar {
 		margin-left: -250;
 	}
@@ -68,7 +69,7 @@ body {
 	#sidebar.active {
 		margin-left: 0;
 	}
-}
+}*/
 
 
 /*-------Añadimos separación al pequeño triángulo de los dropdown---*/
@@ -123,4 +124,63 @@ a[data-toggle="collapse"] {
 	padding-left: 30px;
 	background: #411E8F;
 }
+
+/*----------Cabecera Sidebar--------------------*/
+#sidebar .sidebar-header {
+	padding: 20px; 
+	overflow: hidden;
+}
+
+#sidebar .sidebar-header .user-pic {
+	float: left;
+	width: 79px;
+	padding: 2px;
+	border-radius: 12px;
+	margin-right: 15px;
+	overflow: hidden;
+}
+
+#sidebar .sidebar-header .user-pic img {
+	/*La propiedad 'object.fit' de CSS se usa para especificar cómo una imagen o un vídeo (<img> o <video>) debe redimensionarse para caber en su contenedor*/
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}
+
+#sidebar .sidebar-header .user-info {
+	float: left;
+}
+
+#sidebar .sidebar-header .user-info > span {
+	display: block;
+}
+
+#sidebar .sidebar-header .user-info .user-name {
+	font-size: 18px;
+}
+
+#sidebar .sidebar-header .user-info .user-role {
+	font-size: 17px;
+}
+
+#sidebar .sidebar-header .user-info .user-status {
+	font-size: 14px;
+	margin-top: 4px;
+}
+
+#sidebar .sidebar-header .user-info .user-status i {
+	font-size: 8px;
+	margin-right: 4px;
+	color: #5cb85c;
+}
+
+/*----------Botones navegado--------------------*/
+#sidebar .sidebar-btn {
+	max-width: 160px;
+	margin-left: 42px;
+}
 /*------------------------------*/
+
+.btn-colapsar {
+	background: #995be3;
+}

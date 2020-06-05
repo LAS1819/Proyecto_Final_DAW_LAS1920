@@ -1,21 +1,30 @@
 {{!-- sidebar.hbs --}}
-<div class="sidebar-header titulo">
-	<h3>CuidandoMiCiudad</h3>
+<div class="sidebar-header">
+	<h3 class="titulo">Panel de Control</h3>
+	<div class="user-pic">
+		<img class="img-fluid img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg">
+	</div>
+	<div class="user-info">
+		<span class="user-name">
+			Lluís <strong>Aracil</strong>
+		</span>
+		<span class="user-role">Administrador</span>
+		<span class="user-status">
+			<i class="fa fa-circle"></i>
+			<span>En línea</span>
+		</span>
+	</div>
 </div>
 
 <ul class="list-unstyled components">
-	<p>Dummy Heading</p>
-	<li class="active">
-		<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+	<li>
+		<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Incidencias</a>
 		<ul class="collapse list-unstyled" id="homeSubmenu">
 			<li>
-				<a href="#">Home 1</a>
+				<a href="#">Añadir incidencias</a>
 			</li>
 			<li>
-				<a href="#">Home 2</a>
-			</li>
-			<li>
-				<a href="#">Home 3</a>
+				<a href="#">Mis incidencias</a>
 			</li>
 		</ul>
 	</li>
@@ -43,3 +52,7 @@
 		<a href="#">Contact</a>
 	</li>
 </ul>
+
+<div class="sidebar-btn">
+	<button type="button" class="btn btn-danger btn-lg btn-block">Cerrar sesión</button>
+</div>
