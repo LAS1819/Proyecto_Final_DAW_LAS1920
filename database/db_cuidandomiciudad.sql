@@ -1,74 +1,6 @@
 -- db_cuidandomiciudad.sql
 USE db_cuidandomiciudad;
 
--- Tabla de USUARIOS
-CREATE TABLE usuarios(
-	idUsuario INT(6) NOT NULL AUTO_INCREMENT,
-	nomUsuario VARCHAR(60) NOT NULL,
-	pasUsuario VARCHAR(60) NOT NULL,
-	corUsuario VARCHAR(80) NOT NULL,
-	ciuUsuario VARCHAR(20) NOT NULL,
-	telUsuario VARCHAR(15),
-	dirUsuario VARCHAR(100) NOT NULL,
-	tipUsuario ENUM('Freemium', 'Premium') NOT NULL DEFAULT 'Freemium',
-	fcRegistro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		CONSTRAINT cp_usuarios PRIMARY KEY (idUsuario)
-);
-
--- Tabla usuarios PREMIUM
-CREATE TABLE premium(
-	idPremium INT(6) NOT NULL AUTO_INCREMENT,
-	idUsuario INT(6) NOT NULL,
-	fcRegPremium TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	fcFinPremium DATE NOT NULL,
-		CONSTRAINT cp_premium PRIMARY KEY (idUsuario),
-		CONSTRAINT cu_premium UNIQUE KEY (idPremium),
-		CONSTRAINT ca_usuario FOREIGN KEY (idUsuario)
-			REFERENCES usuarios(idUsuario)
-);
-
---------------------------------------------------------------------------------
-
--- Tabla INCIDENCIAS
-CREATE TABLE incidencias(
-	idIncidencia INT(6) NOT NULL AUTO_INCREMENT,
-	idUsuario INT(6) NOT NULL,
-	nomIncidencia VARCHAR(60) NOT NULL,
-	menIncidencia TEXT NOT NULL,
-	totVotos INT(6) NOT NULL DEFAULT 0,
-	tipIncidencia ENUM('Parques', 'Fachadas', 'Desperfectos', 'Limpieza', 'Manifestaciones', 'Abandono') NOT NULL,
-	-- TO DO: comprobar cómo son los datos recibidos de un geolocalizador
-	ubiIncidencia VARCHAR(50),
-	-- TO DO: comprobar cómo subir imagen a la base de datos y el tipo de dato correcto (BLOB, MEDIUMBLOB o LONGBLOB)
-	imgIncidencia BLOB,
-	fcCreacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		CONSTRAINT cp_incidencia PRIMARY KEY (idIncidencia, idUsuario),
-		CONSTRAINT ca_usuario FOREIGN KEY (idUsuario)
-			REFERENCES usuarios(idUsuario)
-);
-
-
--- Tabla PROPUESTAS
-CREATE TABLE propuestas(
-	idPropuesta INT(6) NOT NULL AUTO_INCREMENT,
-	idIncidencia INT(6) NOT NULL,
-	nomPropuesta VARCHAR(60),
-	menPropuesta TEXT NOT NULL,
-	totVotos INT(6) NOT NULL DEFAULT 0,
-		CONSTRAINT cp_propuesta PRIMARY KEY (idPropuesta, idIncidencia),
-		CONSTRAINT ca_incidencia FOREIGN KEY (idIncidencia)
-			REFERENCES incidencias(idIncidencia)
-);
-
--- Tabla NOTICIAS
-CREATE TABLE noticias(
-	idNoticia INT(6) NOT NULL AUTO_INCREMENT,
-	nomNoticia VARCHAR(60) NOT NULL,
-	menNoticia TEXT NOT NULL,
-	totVotos INT(6) NOT NULL DEFAULT 0,
-		CONSTRAINT cp_noticia PRIMARY KEY (idNoticia)
-);
-
 -- Tabla AYUNTAMIENTOS
 CREATE TABLE ayuntamientos(
 	idAyuntamiento INT(6) NOT NULL AUTO_INCREMENT,
@@ -80,14 +12,119 @@ CREATE TABLE ayuntamientos(
 		CONSTRAINT cp_ayuntamiento PRIMARY KEY (idAyuntamiento)
 );
 
+---------Nueva tabla que no corresponde ni al modelo lógico ni E-R---------------
+-- Se ha planteado durante la implantación de la aplicación
+CREATE TABLE ciudades(
+	idCiudad INT(6) NOT NULL AUTO_INCREMENT,
+	idAyuntamiento INT(6) NOT NULL,
+	codPostal INT(6) NOT NULL,
+	proCiudad VARCHAR(60) NOT NULL,
+	nomCiudad VARCHAR(60) NOT NULL,
+	imgCiudad VARCHAR(20),
+		CONSTRAINT cp_ciudad PRIMARY KEY (idCiudad),
+		CONSTRAINT cu_ciudad UNIQUE KEY (codPostal)
+);
+
+-- Tabla de USUARIOS
+CREATE TABLE usuarios(
+	idUsuario INT(6) NOT NULL AUTO_INCREMENT,
+	idCiudad INT(6) NOT NULL,
+	nomUsuario VARCHAR(60) NOT NULL,
+	pasUsuario VARCHAR(60) NOT NULL,
+	corUsuario VARCHAR(80) NOT NULL,
+	ciuUsuario VARCHAR(20) NOT NULL,
+	telUsuario VARCHAR(15),
+	dirUsuario VARCHAR(100) NOT NULL,
+	tipUsuario ENUM('Freemium', 'Premium') NOT NULL DEFAULT 'Freemium',
+	fcRegistro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		CONSTRAINT cp_usuarios PRIMARY KEY (idUsuario),
+		CONSTRAINT ca_usu_ciudad FOREIGN KEY (idCiudad)
+			REFERENCES ciudades(idCiudad)
+);
+
+-- Tabla usuarios PREMIUM
+CREATE TABLE premium(
+	idPremium INT(6) NOT NULL AUTO_INCREMENT,
+	idUsuario INT(6) NOT NULL,
+	fcRegPremium TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	fcFinPremium DATE NOT NULL,
+		CONSTRAINT cp_premium PRIMARY KEY (idUsuario),
+		CONSTRAINT cu_premium UNIQUE KEY (idPremium),
+		CONSTRAINT ca_pre_usuario FOREIGN KEY (idUsuario)
+			REFERENCES usuarios(idUsuario)
+);
+
+
+-- Tabla INCIDENCIAS
+CREATE TABLE incidencias(
+	idIncidencia INT(6) NOT NULL AUTO_INCREMENT,
+	idUsuario INT(6) NOT NULL,
+	idCiudad INT(6) NOT NULL,
+	nomIncidencia VARCHAR(60) NOT NULL,
+	menIncidencia TEXT NOT NULL,
+	totVotos INT(6) NOT NULL DEFAULT 0,
+	tipIncidencia ENUM('Parques', 'Fachadas', 'Desperfectos', 'Limpieza', 'Manifestaciones', 'Abandono') NOT NULL,
+	-- TO DO: comprobar cómo son los datos recibidos de un geolocalizador
+	ubiIncidencia VARCHAR(50),
+	imgIncidencia VARCHAR(20),
+	fcCreacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		CONSTRAINT cp_incidencia PRIMARY KEY (idIncidencia),
+		CONSTRAINT ca_inc_usuario FOREIGN KEY (idUsuario)
+			REFERENCES usuarios(idUsuario),
+		CONSTRAINT ca_inc_ciudad FOREIGN KEY (idCiudad)
+			REFERENCES ciudades(idCiudad)
+);
+
+
+-- Tabla PROPUESTAS
+CREATE TABLE propuestas(
+	idPropuesta INT(6) NOT NULL AUTO_INCREMENT,
+	idIncidencia INT(6) NOT NULL,
+	idUsuario INT(6) NOT NULL,
+	nomPropuesta VARCHAR(60),
+	menPropuesta TEXT NOT NULL,
+	totVotos INT(6) NOT NULL DEFAULT 0,
+		CONSTRAINT cp_propuesta PRIMARY KEY (idPropuesta),
+		CONSTRAINT ca_incidencia FOREIGN KEY (idIncidencia)
+			REFERENCES incidencias(idIncidencia),
+		CONSTRAINT ca_pro_usuario FOREIGN KEY (idUsuario)
+			REFERENCES usuarios(idUsuario)
+);
+
+-- Tabla FIRMA (Nueva tabla relacional entre Usuarios y Propuestas)
+-- En la tabla propuestas necesitamos guardar quién ha votado, para
+--usarlo como muestra de firmas de personas reales
+CREATE TABLE firma (
+	idUsuario INT(6) NOT NULL,
+	idPropuesta INT(6) NOT NULL,
+	fcFirma TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		CONSTRAINT cp_firma PRIMARY KEY (idUsuario, idPropuesta),
+		CONSTRAINT ca_fir_usuario FOREIGN KEY (idUsuario)
+			REFERENCES usuarios(idUsuario),
+		CONSTRAINT ca_fir_propuesta FOREIGN KEY (idPropuesta)
+			REFERENCES propuestas(idPropuesta)
+);
+
+-- Tabla NOTICIAS
+CREATE TABLE noticias(
+	idNoticia INT(6) NOT NULL AUTO_INCREMENT,
+	idCiudad INT(6) NOT NULL,
+	nomNoticia VARCHAR(60) NOT NULL,
+	menNoticia TEXT NOT NULL,
+	totVotos INT(6) NOT NULL DEFAULT 0,
+		CONSTRAINT cp_noticia PRIMARY KEY (idNoticia),
+		CONSTRAINT ca_not_ciudad FOREIGN KEY (idCiudad)
+			REFERENCES ciudades(idCiudad)
+);
+
 -- Tabla AVISOS
 CREATE TABLE avisos(
 	idAviso INT(6) NOT NULL AUTO_INCREMENT,
 	idAyuntamiento INT(6) NOT NULL,
 	nomAviso VARCHAR(60),
 	menAviso TEXT NOT NULL,
-	imgAviso BLOB,
-		CONSTRAINT cp_aviso PRIMARY KEY (idAviso, idAyuntamiento),
+	imgAviso VARCHAR(20),
+		CONSTRAINT cp_aviso PRIMARY KEY (idAviso),
 		CONSTRAINT ca_ayuntamiento FOREIGN KEY (idAyuntamiento)
 			REFERENCES ayuntamientos(idAyuntamiento)
 );
@@ -109,29 +146,31 @@ CREATE TABLE genera(
 
 ------------------------------------------------------------------------------
 
--- Tabla PUBLICACIONES
-CREATE TABLE publicaciones(
-	idPublicacion INT(6) NOT NULL AUTO_INCREMENT,
-	idUsuario INT(6) NOT NULL,
-	nomPublicacion INT(6) NOT NULL,
-	menPublicacion TEXT NOT NULL,
-	fcPublicacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	totVotos INT(6) NOT NULL DEFAULT 0,
-		CONSTRAINT cp_publicacion PRIMARY KEY (idPublicacion, idUsuario),
-		CONSTRAINT ca_pub_usuario FOREIGN KEY (idUsuario)
-			REFERENCES usuarios(idUsuario)
-);
+-- Tabla PUBLICACIONES (Eliminada de la BD)
+-- CREATE TABLE publicaciones(
+-- 	idPublicacion INT(6) NOT NULL AUTO_INCREMENT,
+-- 	idUsuario INT(6) NOT NULL,
+-- 	nomPublicacion INT(6) NOT NULL,
+-- 	menPublicacion TEXT NOT NULL,
+-- 	fcPublicacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+-- 	totVotos INT(6) NOT NULL DEFAULT 0,
+-- 		CONSTRAINT cp_publicacion PRIMARY KEY (idPublicacion),
+-- 		CONSTRAINT ca_pub_usuario FOREIGN KEY (idUsuario)
+-- 			REFERENCES usuarios(idUsuario)
+-- );
 
 -- Tabla COMENTARIOS
 CREATE TABLE comentarios(
 	idComentario INT(6) NOT NULL AUTO_INCREMENT,
-	idPublicacion INT(6) NOT NULL,
 	idUsuario INT(6) NOT NULL,
+	-- Para hacer consultas sobre los comentarios se usarán los campos
+	-- tipPublicacion y idUbiComentario para localizar el lugar al que corresponden
+	tipPublicacion ENUM('Incidencia', 'Propuesta', 'Oferta', 'Noticia') NOT NULL,
+	-- idUbiComentario, contendrá el id de la publicación (noticias, incidencias, propuestas, etc.)
+	idUbiComentario INT(6) NOT NULL,
 	menComentario TEXT NOT NULL,
 	fcComentario TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-		CONSTRAINT cp_comentario PRIMARY KEY (idComentario, idUsuario, idPublicacion),
-		CONSTRAINT ca_com_publicacion FOREIGN KEY (idPublicacion)
-			REFERENCES publicaciones(idPublicacion),
+		CONSTRAINT cp_comentario PRIMARY KEY (idComentario),
 		CONSTRAINT ca_com_usuario FOREIGN KEY (idUsuario)
 			REFERENCES usuarios(idUsuario)
 );
@@ -140,12 +179,15 @@ CREATE TABLE comentarios(
 CREATE TABLE ofertas(
 	idOferta INT(6) NOT NULL AUTO_INCREMENT,
 	idUsuario INT(6) NOT NULL,
+	idCiudad INT(6) NOT NULL,
 	nomOferta VARCHAR(60) NOT NULL,
 	fcOferta TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	tipOferta ENUM('Ayuda', 'Compañía', 'Pasear', 'Buscar', 'Pérdida'),
-		CONSTRAINT cp_oferta PRIMARY KEY (idOferta, idUsuario),
+		CONSTRAINT cp_oferta PRIMARY KEY (idOferta),
 		CONSTRAINT ca_ofe_usuario FOREIGN KEY (idUsuario)
-			REFERENCES usuarios(idUsuario)
+			REFERENCES usuarios(idUsuario),
+		CONSTRAINT ca_ofe_ciudad FOREIGN KEY (idCiudad)
+			REFERENCES ciudades(idCiudad)
 );
 
 -- Tabla DEMANDA
@@ -175,7 +217,7 @@ CREATE TABLE asociaciones(
 	nomAsociacion VARCHAR(60) NOT NULL,
 	desAsociacion VARCHAR(200) NOT NULL,
 	numSocios INT(6) NOT NULL DEFAULT 0,
-		CONSTRAINT cp_asociacion PRIMARY KEY (idAsociacion, idUsuario),
+		CONSTRAINT cp_asociacion PRIMARY KEY (idAsociacion),
 		CONSTRAINT ca_aso_usuario FOREIGN KEY (idUsuario)
 			REFERENCES usuarios(idUsuario),
 		CONSTRAINT cu_aso_asociacion UNIQUE KEY (nomAsociacion)
@@ -205,7 +247,7 @@ CREATE TABLE dona(
 			REFERENCES donaciones(idDonacion),
 		CONSTRAINT ca_dona_asociacion FOREIGN KEY (idAsociacion)
 			REFERENCES asociaciones(idAsociacion),
-		CONSTRAINT vnn_dona_usuario FOREIGN KEY (idUsuario)
+		CONSTRAINT ca_dona_usuario FOREIGN KEY (idUsuario)
 			REFERENCES usuarios(idUsuario)
 );
 
@@ -234,16 +276,3 @@ CREATE TABLE contacta (
 
 
 -----------------------------------------------------------------
----------NUEVAS TABLAS AÑADIDAS QUE DIFIEREN DEL MODELO LÓGICO Y E-R-----------
--------TABLA CIUDADES------
-CREATE TABLE ciudades (
-	idCiudad INT(6) NOT NULL AUTO_INCREMENT,
-	codPostal VARCHAR(6) NOT NULL,
-	proCiudad VARCHAR(60) NOT NULL,
-	nomCiudad VARCHAR(60) NOT NULL,
-		CONSTRAINT cp_ciudad PRIMARY KEY (idCiudad),
-		CONSTRAINT cu_ciudad UNIQUE KEY (codPostal)
-);
-
---TO DO: Crear constraints para las tablas a las que se dirige
--- la tabla CIUDADES
