@@ -1,4 +1,8 @@
 -- db_cuidandomiciudad.sql
+-- Creamos BD
+CREATE DATABASE db_cuidandomiciudad;
+
+-- Usamos BD
 USE db_cuidandomiciudad;
 
 -- Tabla AYUNTAMIENTOS
@@ -276,3 +280,13 @@ CREATE TABLE contacta (
 
 
 -----------------------------------------------------------------
+
+----------Nuevas columnas para la tabla USUARIOS-----------------
+ALTER TABLE usuarios
+	ADD COLUMN apeUsuario VARCHAR(60) NOT NULL
+		AFTER nomUsuario,
+	ADD COLUMN nickUsuario VARCHAR(20) NOT NULL
+		AFTER apeUsuario;
+
+ALTER TABLE usuarios
+	ADD CONSTRAINT cu_usuarios UNIQUE (nickUsuario, corUsuario);
