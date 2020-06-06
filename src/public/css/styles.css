@@ -24,8 +24,8 @@ body {
 	/*background-color: #2A2438;*/
 }
 
-.contenido-pagina {
-	/*padding-right: 0;*/
+#content .body-content form {
+	color: black;
 }
 
 .titulo {

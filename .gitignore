@@ -1,4 +1,5 @@
 # Personal data
+# Ocultamos este archivo porque contiene las claves de mi BD MySQL
 /src/keys.js
 
 # Logs
