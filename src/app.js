@@ -16,6 +16,8 @@ const app = express();
 
 
 // -----------CONFIGURACIÓN------------------
+// Configuramos el puerto
+app.set('port', (process.env.PORT || 3000));
 
 // Configuramos el acceso a las vistas
 app.set('views', path.join(__dirname, 'views'));
@@ -27,7 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 // partialsDir -> Directorio donde guardamos los partials
 // helpers -> Para utilizar funciones de handlebars. Por si queremos procesar fechas, por ejemplo.
 app.engine('.hbs', hbs({
-	extname: 'hbs',
+	extname: '.hbs',
 	defaultLayout: 'default',
 	layoutsDir: path.join(app.get('views'), 'layouts'),
 	partialsDir: path.join(app.get('views'), 'partials'),
@@ -36,8 +38,7 @@ app.engine('.hbs', hbs({
 
 // Advertimos de la extensión que usaremos en los archivos handlebars (hbs)
 app.set('view engine', '.hbs');
-// Configuramos el puerto
-app.set('port', (process.env.PORT || 3000));
+
 
 // ------------MIDDLEWARES--------------------------------
 // Decimos que use morgan y el parámetro 'dev' para que nos muestre cierto tipo de datos por consola
@@ -63,6 +64,7 @@ app.use((req, res, next) => {
 // app.use('/', routes);
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
+app.use('/incidencias',require('./routes/incidencias'));
 
 //--------------PUBLIC-------------------------------
 // Donde está el CSS, Javascript, fuentes, etc...
