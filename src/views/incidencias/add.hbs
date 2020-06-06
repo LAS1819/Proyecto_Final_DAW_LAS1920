@@ -4,7 +4,7 @@
 	<div class="col">
 		<div class="card">
 			<div class="card-body">
-				<form action="/incidencias/add" mehod="POST">
+				<form action="/incidencias/add" method="POST">
 					<div class="form-group">
 						<input type="text" class="form-control" name="nombre" placeholder="Nombre de la Incidencia" autofocus>
 					</div>
@@ -26,8 +26,16 @@
 						<input id="inputCiudad" class="form-control" type="text" name="ciudad" placeholder="Nombre de la Ciudad">
 					</div>
 					<div class="form-group">
-						<label for="inputImagen">Añade una imagen (Desactivado)</label>
+						<textarea name="mensaje" rows="2" class="form-control" placeholder="Mensaje"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="inputImagen">Añade una imagen</label>
 						<input type="file" class="form-control-file" name="imagen" id="inputImagen">
+					</div>
+					<div class="form-group">
+						<button class="btn btn-success btn-block">
+							Guardar
+						</button>
 					</div>
 				</form>
 			</div>

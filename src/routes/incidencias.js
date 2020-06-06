@@ -21,7 +21,7 @@ router.get('/add', (req, res) => {
 // un ruter hacia la misma ruta pero para peticiones POST
 router.post('/add', (req, res) => {
 	res.send('Recibido');
-})
+});
 
 // Exportamos el router
 module.exports = router;
