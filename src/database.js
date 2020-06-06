@@ -12,7 +12,8 @@ const { promisify } = require('util');
 // Con destructuring traemos únicamente la propiedad database
 const { database } = require('./keys');
 
-// Utilizamos pool de mysql. Pero este módulo no soporta las promesas, y por tanto tampoco el 'async-await'
+// Utilizamos pool de mysql. Pero este módulo no soporta las promesas,
+//y por tanto tampoco el 'async-await'
 const pool = mysql.createPool(database);
 
 // Usamos la conexión para tenerla preparada
@@ -32,13 +33,17 @@ pool.getConnection((err, connection) => {
 	}
 
 	// Si no hay error... obtenemos la conexión usando el métdod relesase
-	if (connection) connection.release();
-	console.log('Base de datos conectada');
-	return;
+	if (connection) {
+		connection.release();
+		console.log('Base de datos conectada');
+		return;
+	} 
+	
 });
 
 // Convertimos a promesas
-// Decimos que queremos usar promesas cuando requerimos hacer query a la consexión (pool)
+// Decimos que queremos usar promesas cuando requerimos
+// hacer query a la consexión (pool)
 pool.query = promisify(pool.query);
 
 // Exportamos el módulo de la conexión (pool) para hacer las consultas a la BD
