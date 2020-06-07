@@ -6,13 +6,14 @@
 			<div class="card-body">
 				<form action="/incidencias/add" method="POST">
 					<div class="form-group">
-						<input type="text" class="form-control" name="nombre" placeholder="Nombre de la Incidencia" autofocus>
+						{{!-- Los atributos name de cada input contendrá la referencia al nombre de cada columna de la tabla INCIDENCIAS --}}
+						<input type="text" class="form-control" name="nomIncidencia" placeholder="Nombre de la incidencia" autofocus>
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" name="lacalizacion" placeholder="Lugar de la incidencia">
+						<input type="text" class="form-control" name="locIncidencia" placeholder="Lugar de la incidencia">
 					</div>
 					<div class="form-group">
-						<select id="inputTipo" class="form-control">
+						<select id="inputTipo" class="form-control" name="tipIncidencia">
 							<option selected>Selecciona...</option>
 							<option>Parques</option>
 							<option>Fachadas</option>
@@ -23,14 +24,14 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<input id="inputCiudad" class="form-control" type="text" name="ciudad" placeholder="Nombre de la Ciudad">
+						<input id="inputCiudad" class="form-control" type="text" name="ubiIncidencia" placeholder="Nombre de la Ciudad">
 					</div>
 					<div class="form-group">
-						<textarea name="mensaje" rows="2" class="form-control" placeholder="Mensaje"></textarea>
+						<textarea name="menIncidencia" rows="2" class="form-control" placeholder="Mensaje"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="inputImagen">Añade una imagen</label>
-						<input type="file" class="form-control-file" name="imagen" id="inputImagen">
+						<input type="file" class="form-control-file" name="imgIncidencia" id="inputImagen">
 					</div>
 					<div class="form-group">
 						<button class="btn btn-success btn-block">
