@@ -31,10 +31,14 @@ router.post('/add', async (req, res) => {
 	// Usamos el destructuring de las últimas versiones de JavaScript
 	// De esta manera separamos los datos del body recibido
 	const { nomIncidencia, locIncidencia, tipIncidencia, ubiIncidencia, menIncidencia, imgIncidencia } = req.body;
+
+	const ciudad = await pool.query('SELECT idCiudad FROM db_cuidandomiciudad.ciudades WHERE nomCiudad = ?', [ubiIncidencia].toString());
+	console.warn('Laa id de la ciudad es: ' + JSON.stringify(ciudad[0].idCiudad));
+
 	// Guardamos los datos en un objeto llamado newIncidencia
 	const newIncidencia = {
 		idUsuario: 1,
-		idCiudad: 2,
+		idCiudad: ciudad[0].idCiudad,
 		nomIncidencia,
 		menIncidencia,
 		locIncidencia,
@@ -45,11 +49,24 @@ router.post('/add', async (req, res) => {
 	// Vemos el nuevo objeto por consola
 	console.warn(newIncidencia);
 
+
+
 	// Guardamos los datos en la base de datos
 	// Como esta petición a la base de datos va a tardar,
 	// usamos Async/Await
-	await pool.query('INSERT INTO incidencias SET ?', [newIncidencia]);
+	await pool.query('INSERT INTO db_cuidandomiciudad.incidencias SET ?', [newIncidencia]);
 	res.send('Recibido');
+});
+
+// Añadimos una ruta para la raíz incidencias, donde se listarán
+// todas las incidencias que haya en la base de datos
+router.get('/', async (req, res) => {
+	// Pedimos todas las incidencias y las guardamos en una constante
+	// llamada 'incidencias'
+	const incidencias = await pool.query('SELECT * FROM incidencias');
+	// Mostramos los datos recibidos en consola
+	console.warn(incidencias);
+	res.render('incidencias/list', { incidencias });
 });
 
 // Exportamos el router

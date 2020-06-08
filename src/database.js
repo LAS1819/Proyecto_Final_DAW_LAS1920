@@ -1,6 +1,7 @@
 // database.js
 // Este archivo lo usaremos para conectar con la base de datos MySQL
 
+const colors = require('colors');
 // Requerimos el módulo mysql
 const mysql = require('mysql');
 
@@ -18,7 +19,7 @@ const pool = mysql.createPool(database);
 
 // Usamos la conexión para tenerla preparada
 pool.getConnection((err, connection) => {
-	console.log('Entrando en getConnection');
+	console.log('Entrando en getConnection'.yellow);
 	// Si la conexión encuentra un error...
 	if (err) {
 		if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -35,7 +36,7 @@ pool.getConnection((err, connection) => {
 	// Si no hay error... obtenemos la conexión usando el métdod relesase
 	if (connection) {
 		connection.release();
-		console.log('Base de datos conectada');
+		console.log('Base de datos conectada'.yellow);
 		return;
 	} 
 	

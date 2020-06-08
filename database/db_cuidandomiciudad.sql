@@ -410,12 +410,16 @@ COMMENT = 'Registro de contactos entre Administradores y Usuarios';
 ------------Datos de prueba--------------------------
 
 -----Datos de prueba para la tabla AYUNTAMIENTOS----
-INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Ayuntamiento Prueba', 'prueba@info.com', 'C/ Saltimbanqui 23', 'Pueblo Test', '989654521');
-INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Otro Ayuntamiento', 'otroay@gmail.com', 'C/ Salamí', 'Villa Testera', '998451128');
+INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Ayuntamiento de Novelda', 'omac@novelda.es', 'Plaza De España 1', 'Novelda', '965602690');
+INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Ayuntamiento de Aspe', 'secretaria@ayto.aspe.es', 'Plaza Mayor 1', 'Aspe', '965492222');
+INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Ayuntamiento de la Romana', 'laromana@aytolaromana.es', 'Plaza Gómez Navarro', 'Romana, La', '965696001');
+INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Ayuntamiento de Monforte del Cid', 'eadministracion@monfortedelcid.es', 'Plaza España 1', 'Monforte del Cid', '965620025');
+INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Ayuntamiento de Monóvar/Monòver', 'monovar@dip-alicante.es', 'Plaza La Sala 1', 'Monóvar/Monòver', '965620025');
 
 ----Datos prueba para CIUDADES
-INSERT INTO `db_cuidandomiciudad`.`ciudades` (`idAyuntamiento`, `codPostal`, `proCiudad`, `nomCiudad`) VALUES ('1', '03513', 'Vinagre Province', 'Gatxamiga');
+INSERT INTO `db_cuidandomiciudad`.`ciudades` (`idAyuntamiento`, `codPostal`, `proCiudad`, `nomCiudad`) VALUES ('1', '03680', 'Alicante', 'Aspe');
 INSERT INTO `db_cuidandomiciudad`.`ciudades` (`idAyuntamiento`, `codPostal`, `proCiudad`, `nomCiudad`) VALUES ('2', '03660', 'Alicante', 'Novelda');
+
 
 ----Datos prueba para USUARIOS
 INSERT INTO `db_cuidandomiciudad`.`usuarios` (`idCiudad`, `nickUsuario`, `nomUsuario`, `apeUsuario`, `pasUsuario`, `corUsuario`, `ciuUsuario`, `telUsuario`, `dirUsuario`) VALUES ('2', 'Pack', 'Paco', 'Marín Seller', 'pacopass', 'paquitocho@gmail.com', 'Novelda', '666666663', 'C/ Jamón nº23 1ºA');
