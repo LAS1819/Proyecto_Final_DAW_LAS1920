@@ -20,6 +20,7 @@ router.get('/add', (req, res) => {
 	});
 });
 
+
 // Para recibir datos del formulario necesitamos tener
 // un ruter hacia la misma ruta pero para peticiones POST
 router.post('/add', async (req, res) => {
@@ -27,6 +28,10 @@ router.post('/add', async (req, res) => {
 	// name de los inputs del formulario
 	// Los mostramos en pantalla para ver si todo ha ido correcto
 	console.warn(req.body);
+
+	// Mostramos el archivo recibido por consola
+	// file -> Archivo que detecta Multer
+	console.warn(req.file);
 
 	// Usamos el destructuring de las últimas versiones de JavaScript
 	// De esta manera separamos los datos del body recibido
