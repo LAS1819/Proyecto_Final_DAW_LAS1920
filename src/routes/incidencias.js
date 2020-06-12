@@ -32,10 +32,14 @@ router.post('/add', async (req, res) => {
 	// De esta manera separamos los datos del body recibido
 	const { nomIncidencia, locIncidencia, tipIncidencia, ubiIncidencia, menIncidencia, imgIncidencia } = req.body;
 
+	// Hacemos una consulta para saber el ID de la ciudad a la que se hace referencia en 'ubiIncidencia'
+	// Usamos toString en ubiIncidencia para que pase un String
 	const ciudad = await pool.query('SELECT idCiudad FROM db_cuidandomiciudad.ciudades WHERE nomCiudad = ?', [ubiIncidencia].toString());
-	console.warn('Laa id de la ciudad es: ' + JSON.stringify(ciudad[0].idCiudad));
+	// Accedemos al primer (y único) índice que nos devuelve la query para saber el ID
+	console.warn('El ID de la ciudad es: ' + JSON.stringify(ciudad[0].idCiudad));
 
 	// Guardamos los datos en un objeto llamado newIncidencia
+	// De momento dejamos la propiedad idUsuario como uno por defecto hasta que sepamos validar usuario
 	const newIncidencia = {
 		idUsuario: 1,
 		idCiudad: ciudad[0].idCiudad,

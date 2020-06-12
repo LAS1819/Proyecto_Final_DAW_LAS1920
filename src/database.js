@@ -23,13 +23,13 @@ pool.getConnection((err, connection) => {
 	// Si la conexión encuentra un error...
 	if (err) {
 		if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-			console.error('La conexión con la base de datos se ha cerrado');
+			console.error('La conexión con la base de datos se ha cerrado'.red);
 		}
 		if (err.code === 'ER_CON_COUNT_ERROR') {
-			console.error('La base de datos tiene muchas conexiones');
+			console.error('La base de datos tiene muchas conexiones'.red);
 		}
 		if (err.code === 'ECONNREFUSED') {
-			console.error('La conexión con la base de datos ha sido rechazada');
+			console.error('La conexión con la base de datos ha sido rechazada'.red);
 		}
 	}
 
