@@ -110,6 +110,10 @@ COMMENT = 'Tabla de incidencias creadas por usuarios';
 ALTER TABLE `db_cuidandomiciudad`.`incidencias` 
 CHANGE COLUMN `menIncidencia` `menIncidencia` TEXT NOT NULL ;
 
+ALTER TABLE `db_cuidandomiciudad`.`incidencias` 
+CHANGE COLUMN `ubiIncidencia` `ubiIncidencia` VARCHAR(60) CHARACTER SET 'latin1' NOT NULL ,
+CHANGE COLUMN `imgIncidencia` `imgIncidencia` VARCHAR(60) CHARACTER SET 'latin1' NOT NULL ;
+
 
 -- Tabla PROPUESTAS
 CREATE TABLE `db_cuidandomiciudad`.`propuestas` (
