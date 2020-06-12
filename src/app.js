@@ -8,6 +8,9 @@ const path = require('path');
 const morgan = require('morgan');
 // Requerimos multer para validar imágenes
 const multer = require('multer');
+// Requerimo 'uuid' para generar nombres únicos en las imágenes subidas
+// Concretamente la parte v4, que generará dicho string único
+const { v4: uuidv4 } = require('uuid');
 // Advertimos que vamos a usar las rutas que definimos en el directorio Routes
 const routes = require('./routes/index');
 
@@ -45,10 +48,11 @@ app.set('view engine', '.hbs');
 // Configuramos MULTER para validar imágenes
 // destination -> Ruta donde se almacenará la imagen subida
 // filename -> Elejimos el nombre que queremos de la imagen
+// Usamos uuidv4 para generar el id único, más el nombre del archivo
 const storage = multer.diskStorage({
 	destination: path.join(__dirname, 'public/uploads'),
 	filename: (req, file, cb) => {
-		cb(null, file.originalname);
+		cb(null, uuidv4() + path.extname(file.originalname).toLowerCase());
 	}
 });
 

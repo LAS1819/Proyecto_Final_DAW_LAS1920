@@ -32,6 +32,9 @@ router.post('/add', async (req, res) => {
 	// Mostramos el archivo recibido por consola
 	// file -> Archivo que detecta Multer
 	console.warn(req.file);
+	// Gradamos los datos de la imagen en una constante
+	const imgName = req.file.filename;
+	console.warn('El nombre de la imagen es renombrado a: ' + imgName);
 
 	// Usamos el destructuring de las últimas versiones de JavaScript
 	// De esta manera separamos los datos del body recibido
@@ -53,7 +56,7 @@ router.post('/add', async (req, res) => {
 		locIncidencia,
 		tipIncidencia,
 		ubiIncidencia,
-		imgIncidencia
+		imgIncidencia: imgName
 	};
 	// Vemos el nuevo objeto por consola
 	console.warn(newIncidencia);
