@@ -32,7 +32,7 @@ router.post('/add', async (req, res) => {
 	// Mostramos el archivo recibido por consola
 	// file -> Archivo que detecta Multer
 	console.warn(req.file);
-	// Gradamos los datos de la imagen en una constante
+	// Guardamos el nombre de la imagen en una constante
 	const imgName = req.file.filename;
 	console.warn('El nombre de la imagen es renombrado a: ' + imgName);
 
@@ -78,7 +78,12 @@ router.get('/', async (req, res) => {
 	const incidencias = await pool.query('SELECT * FROM incidencias');
 	// Mostramos los datos recibidos en consola
 	console.warn(incidencias);
-	res.render('incidencias/list', { incidencias });
+	res.render('incidencias/list', {
+		incidencias,
+		title: 'Incidencias',
+		// TO DO: Averiguar cómo pasar link hacia imagen en cada iteración
+		url: '/uploads/'
+	});
 });
 
 // Exportamos el router

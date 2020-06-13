@@ -114,6 +114,10 @@ ALTER TABLE `db_cuidandomiciudad`.`incidencias`
 CHANGE COLUMN `ubiIncidencia` `ubiIncidencia` VARCHAR(60) CHARACTER SET 'latin1' NOT NULL ,
 CHANGE COLUMN `imgIncidencia` `imgIncidencia` VARCHAR(60) CHARACTER SET 'latin1' NOT NULL ;
 
+-- Añadimos opción peligro
+ALTER TABLE `db_cuidandomiciudad`.`incidencias` 
+CHANGE COLUMN `tipIncidencia` `tipIncidencia` ENUM('Parques', 'Fachadas', 'Desperfectos', 'Limpieza', 'Manifestaciones', 'Abandono', 'Peligro') CHARACTER SET 'latin1' NOT NULL ;
+
 
 -- Tabla PROPUESTAS
 CREATE TABLE `db_cuidandomiciudad`.`propuestas` (
@@ -419,10 +423,15 @@ INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyunta
 INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Ayuntamiento de la Romana', 'laromana@aytolaromana.es', 'Plaza Gómez Navarro', 'Romana, La', '965696001');
 INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Ayuntamiento de Monforte del Cid', 'eadministracion@monfortedelcid.es', 'Plaza España 1', 'Monforte del Cid', '965620025');
 INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Ayuntamiento de Monóvar/Monòver', 'monovar@dip-alicante.es', 'Plaza La Sala 1', 'Monóvar/Monòver', '965620025');
+INSERT INTO `db_cuidandomiciudad`.`ayuntamientos` (`nomAyuntamiento`, `corAyuntamiento`, `dirAyuntamiento`, `pobAyuntamiento`, `telAyuntamiento`) VALUES ('Ayuntamiento de Elda', 'registro@elda.es', 'Plaza de la Constitución 1', 'Elda', '965380402');
 
 ----Datos prueba para CIUDADES
 INSERT INTO `db_cuidandomiciudad`.`ciudades` (`idAyuntamiento`, `codPostal`, `proCiudad`, `nomCiudad`) VALUES ('1', '03680', 'Alicante', 'Aspe');
 INSERT INTO `db_cuidandomiciudad`.`ciudades` (`idAyuntamiento`, `codPostal`, `proCiudad`, `nomCiudad`) VALUES ('2', '03660', 'Alicante', 'Novelda');
+INSERT INTO `db_cuidandomiciudad`.`ciudades` (`idAyuntamiento`, `codPostal`, `proCiudad`, `nomCiudad`) VALUES ('3', '03669', 'Alicante', 'Romana, La');
+INSERT INTO `db_cuidandomiciudad`.`ciudades` (`idAyuntamiento`, `codPostal`, `proCiudad`, `nomCiudad`) VALUES ('4', '03670', 'Alicante', 'Monforte del Cid');
+INSERT INTO `db_cuidandomiciudad`.`ciudades` (`idAyuntamiento`, `codPostal`, `proCiudad`, `nomCiudad`) VALUES ('5', '03600', 'Alicante', 'Elda');
+
 
 
 ----Datos prueba para USUARIOS

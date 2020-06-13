@@ -5,12 +5,15 @@
 	{{#each incidencias}}
 		<div class="col-md">
 			<div class="card" style="width: 18rem;">
+				<img class="img-fluid" src="/uploads/{{ imgIncidencia }}">
 				<div class="card-body">
-					<a href="">
+					<a href="#">
 						<h3 class="card-title text-uppercase">
 							{{ nomIncidencia }}
 						</h3>
 					</a>
+					<p class="card-text text-dark">{{ menIncidencia }}</p>
+					<a href="#" class="btn btn-cmc">Ver</a>
 				</div>
 			</div>
 		</div>

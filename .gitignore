@@ -2,6 +2,9 @@
 # Ocultamos este archivo porque contiene las claves de mi BD MySQL
 /src/keys.js
 
+# Ocultamos imágenes de prueba que estamos usando
+/src/public/uploads
+
 # Logs
 logs
 *.log
