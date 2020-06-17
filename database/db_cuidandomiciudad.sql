@@ -68,7 +68,6 @@ CREATE TABLE `db_cuidandomiciudad`.`premium` (
   `idUsuario` INT NOT NULL COMMENT 'Es PK porque es una especialización de la tabla Usuarios',
   `fcRegPremium` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fcFinRegistro` TIMESTAMP NOT NULL COMMENT 'La fecha final del registro es el final de la cuota Premium, por lo tanto debe estar definido por defecto, para que se introduzca automáticamente ',
-  `premiumcol` VARCHAR(45) NULL,
   PRIMARY KEY (`idUsuario`),
   UNIQUE INDEX `idPremium_UNIQUE` (`idPremium` ASC) VISIBLE,
   CONSTRAINT `cp_premium`
@@ -142,6 +141,11 @@ CREATE TABLE `db_cuidandomiciudad`.`propuestas` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabla para las propuestas que provienen de las incidencias';
+
+ALTER TABLE `db_cuidandomiciudad`.`propuestas` 
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`idPropuesta`, `fcPropuesta`);
+;
 
 -- Tabla FIRMA (Nueva tabla relacional entre Usuarios y Propuestas)
 -- En la tabla propuestas necesitamos guardar quién ha votado, para
@@ -222,6 +226,14 @@ CREATE TABLE `db_cuidandomiciudad`.`genera` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabla que guarda los datos de la generación de un aviso';
+
+ALTER TABLE `db_cuidandomiciudad`.`avisos` 
+ADD COLUMN `fcGenerado` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `imgAviso`;
+
+ALTER TABLE `db_cuidandomiciudad`.`avisos` 
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`idAviso`, `fcGenerado`);
+;
 
 
 
@@ -380,6 +392,9 @@ CREATE TABLE `db_cuidandomiciudad`.`dona` (
     ON UPDATE NO ACTION)
 COMMENT = 'Registro de donaciones que hacen los usuarios a las asociaciones';
 
+ALTER TABLE `db_cuidandomiciudad`.`dona` 
+ADD COLUMN `cantDonacion` INT NOT NULL AFTER `fcDonacion`;
+
 -- Tabla ADMINISTRADOR
 CREATE TABLE `db_cuidandomiciudad`.`administradores` (
   `idAdministrador` INT NOT NULL AUTO_INCREMENT,
@@ -411,6 +426,11 @@ CREATE TABLE `db_cuidandomiciudad`.`contacta` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Registro de contactos entre Administradores y Usuarios';
+
+ALTER TABLE `db_cuidandomiciudad`.`contacta` 
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`idAdministrador`, `idUsuario`, `fcContacto`);
+;
 
 
 -----Data Manipulation Language DML-----------------------------
