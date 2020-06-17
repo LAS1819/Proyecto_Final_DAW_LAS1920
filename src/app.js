@@ -13,6 +13,16 @@ const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 // Advertimos que vamos a usar las rutas que definimos en el directorio Routes
 const routes = require('./routes/index');
+// Requerimos 'connect-flash' para enviar mensajes como middleware
+const flash = require('connect-flash');
+// Requerimos 'express-session' para establecer sesiones y almacenar datos en la memoria del servidor
+const session = require('express-session');
+// Requerimos 'express-mysql-session' para guardar las sesiones en la base de datos
+const MySQLStore = require('express-mysql-session');
+
+// Requerimos las claves de nuestra BD de MySQL para poder guardar la sesión
+// Este archivo está oculto en el repositorio GitHub, así que es necesario crearlo con las credenciales de cada uno que quiera probarlo
+const { database } = require('./keys');
 
 // -------Inicializaciones--------
 // Iniciamos conexión
@@ -60,6 +70,22 @@ const storage = multer.diskStorage({
 // ------------MIDDLEWARES--------------------------------
 // ##########################################
 
+// Usamos 'express-session'
+// secret -> palabra secreta
+// resave -> controla si se renueva o no la sesión
+// saveUninitialized -> controla si se guarda o no la sesión
+// store -> lugar donde guardamos la sesión. Le pasamos database, el cual contiene las credenciales para conectar con esa BD
+app.use(session({
+	secret: 'CMCSession',
+	resave: false,
+	saveUninitialized: false,
+	store: new MySQLStore(database)
+}));
+
+
+// Usamos 'connect-flash' como middleware y mostrar mensajes de una página a otra
+app.use(flash());
+
 // Decimos que use morgan y el parámetro 'dev' para que nos muestre cierto tipo de datos por consola
 app.use(morgan('dev'));
 
@@ -68,6 +94,8 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 // Para enviar y recibir JSON
 app.use(express.json());
+
+
 
 // Decimos a la app que use multer
 // storage -> El storage que hemos creado en la configuración de multer
@@ -90,10 +118,13 @@ app.use(multer({
 	}
 }).single('imgIncidencia'));
 
+// ##########################################
 //-------------VARIABLES GLOBALES--------------------
-// Futura función
+// ##########################################
 app.use((req, res, next) => {
-
+	// Guardamos el valor de succes en una variable local (app.locals)
+	// Así podemos tener disponible este mensaje en todas nuestras vistas
+	app.locals.success = req.flash('success');
 	next();
 });
 

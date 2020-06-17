@@ -67,6 +67,10 @@ router.post('/add', async (req, res) => {
 	// Como esta petición a la base de datos va a tardar,
 	// usamos Async/Await
 	await pool.query('INSERT INTO db_cuidandomiciudad.incidencias SET ?', [newIncidencia]);
+
+	//Para mostrar un mensaje con el módulo 'connect-flash'
+	// 'flash' necesita dos parámetros, 1: nombre como lo guardamos - 2: valor del mensaje
+	req.flash('success', 'Incidencia guardada con éxito');
 	res.redirect('/incidencias');
 });
 
@@ -94,6 +98,9 @@ router.get('/delete/:id', async (req, res) => {
 	// res.send('Eliminado');
 	// Hacemos una constulta para eliminar dicha incidencia
 	await pool.query('DELETE FROM incidencias WHERE idIncidencias = ?', [id]);
+	// Mostramos mensaje satisfactorio si todo va bien
+	req.flash('success', 'Incidencia eliminada satisfactoriamente');
+	// Redireccionamos a 'Incidencias'
 	res.redirect('/incidencias');
 });
 
@@ -101,7 +108,7 @@ router.get('/delete/:id', async (req, res) => {
 router.get('/edit/:id', async (req, res) => {
 	const { id } = req.params;
 	const incidencias = await pool.query('SELECT * FROM incidencias WHERE idIncidencias = ?', [id]);
-	// console.log(incidencias[0]);
+	
 	res.render('incidencias/edit', {incidencia: incidencias[0]});
 })
 
@@ -126,11 +133,11 @@ router.post('/edit/:id', async (req, res) => {
 		ubiIncidencia
 	};
 
-	console.log(newIncidencia);
 	// res.send('Actualizado');
 
 	// Hacemos la consulta para actualizar los datos
 	await pool.query('UPDATE incidencias SET ? WHERE idIncidencias = ?', [newIncidencia, id]);
+	req.flash('success', 'Incidencia actualizada satisfactoriamente');
 	res.redirect('/incidencias');
 });
 
