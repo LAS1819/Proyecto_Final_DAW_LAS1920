@@ -88,9 +88,13 @@ router.get('/', async (req, res) => {
 
 // Añadimos una ruta para escuchar los eventos de eliminación
 router.get('/delete/:id', async (req, res) => {
+	// Recogemos el idIncidencias de la incidencia
 	const { id } = req.params;
-	console.log(id);
-	res.send('Eliminado');
+	// console.log(id);
+	// res.send('Eliminado');
+	// Hacemos una constulta para eliminar dicha incidencia
+	await pool.query('DELETE FROM incidencias WHERE idIncidencias = ?', [id]);
+	res.redirect('/incidencias');
 });
 
 // Exportamos el router
