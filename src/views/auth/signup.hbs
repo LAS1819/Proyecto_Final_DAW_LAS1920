@@ -2,12 +2,37 @@
 <div class="container p-4">
 	<div class="row">
 		<div class="col-md mx-auto">
-			<div class="card text-center">
+			<div class="card text-center text-dark">
 				<div class="card-header">
 					<h3>Registrarse</h3>
 				</div>
 				<div class="card-body">
-					<form action="/signup"></form>
+					<form action="/signup" method="POST">
+						<div class="form-group">
+							<input type="text" name="nomUsuario" placeholder="Nombre" class="form-control" autofocus>
+						</div>
+						<div class="form-group">
+							<input type="text" name="apeUsuario" placeholder="Apellidos" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="text" name="nickUsuario" placeholder="Nombre de usuario" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="mail" name="corUsuario" placeholder="Correo Electrónico" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="password" name="pasUsuario" placeholder="Password" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="text" name="ciuUsuario" placeholder="Ciudad" class="form-control">
+						</div>
+
+						<div class="form-group">
+							<button class="btn btn-success btn-block">
+								SignUp
+							</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

@@ -48,7 +48,7 @@ CREATE TABLE `db_cuidandomiciudad`.`usuarios` (
   `corUsuario` VARCHAR(80) NOT NULL,
   `ciuUsuario` VARCHAR(60) NOT NULL,
   `telUsuario` VARCHAR(15) NULL,
-  `dirUsuario` VARCHAR(100) NOT NULL,
+  `dirUsuario` VARCHAR(100) NULL,
   `tipUsuario` ENUM('Freemium', 'Premium') NOT NULL DEFAULT 'Freemium',
   `fcRegistro` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idUsuario`),
@@ -61,6 +61,8 @@ CREATE TABLE `db_cuidandomiciudad`.`usuarios` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabla de usuarios';
+
+
 
 -- Tabla usuarios PREMIUM
 CREATE TABLE `db_cuidandomiciudad`.`premium` (
