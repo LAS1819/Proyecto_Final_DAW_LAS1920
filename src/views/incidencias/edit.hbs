@@ -5,16 +5,16 @@
 		<div class="card">
 			<div class="card-body">
 				{{!-- Añadimos la propiedad 'enctype' para aceptar imágenes desde el formulario --}}
-				<form action="/incidencias/add" method="POST" enctype="multipart/form-data">
+				<form action="/incidencias/edit/{{incidencia.idIncidencias}}" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						{{!-- Los atributos name de cada input contendrá la referencia al nombre de cada columna de la tabla INCIDENCIAS --}}
-						<input type="text" value="{{incidencias.nomIncidencia}}" class="form-control" name="nomIncidencia" placeholder="Nombre de la incidencia" autofocus>
+						<input type="text" value="{{incidencia.nomIncidencia}}" class="form-control" name="nomIncidencia" placeholder="Nombre de la incidencia" autofocus>
 					</div>
 					<div class="form-group">
-						<input type="text" value="{{incidencias.locIncidencia}}" class="form-control" name="locIncidencia" placeholder="Lugar de la incidencia">
+						<input type="text" value="{{incidencia.locIncidencia}}" class="form-control" name="locIncidencia" placeholder="Lugar de la incidencia">
 					</div>
 					<div class="form-group">
-						<select id="inputTipo" value="{{incidencias.tipIncidencia}}" class="form-control" name="tipIncidencia">
+						<select id="inputTipo" value="{{incidencia.tipIncidencia}}" class="form-control" name="tipIncidencia">
 							<option>Selecciona...</option>
 							<option>Parques</option>
 							<option>Fachadas</option>
@@ -26,10 +26,10 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<input id="inputCiudad" class="form-control" type="text" value="{{incidencias.ubiIncidencia}}" name="ubiIncidencia" placeholder="Nombre de la Ciudad">
+						<input id="inputCiudad" class="form-control" type="text" value="{{incidencia.ubiIncidencia}}" name="ubiIncidencia" placeholder="Nombre de la Ciudad">
 					</div>
 					<div class="form-group">
-						<textarea name="menIncidencia" value="incidencias.menIncidencia" rows="2" class="form-control" placeholder="Mensaje"></textarea>
+						<textarea name="menIncidencia" rows="2" class="form-control" placeholder="Mensaje">{{incidencia.menIncidencia}}</textarea>
 					</div>
 					<div class="form-group">
 						<button class="btn btn-success btn-block">

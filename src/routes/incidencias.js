@@ -102,8 +102,37 @@ router.get('/edit/:id', async (req, res) => {
 	const { id } = req.params;
 	const incidencias = await pool.query('SELECT * FROM incidencias WHERE idIncidencias = ?', [id]);
 	// console.log(incidencias[0]);
-	res.render('incidencias/edit', {incidencias: incidencias[0]});
+	res.render('incidencias/edit', {incidencia: incidencias[0]});
 })
+
+// RUTA PARA RECIBIR DATOS INCIDENCIA ACTUALIZADA
+// POST
+router.post('/edit/:id', async (req, res) => {
+	const { id } = req.params;
+	console.log(req.body);
+	const { nomIncidencia, locIncidencia, tipIncidencia, ubiIncidencia, menIncidencia } = req.body;
+
+	// Hacemos una consulta para saber el ID de la ciudad a la que se hace referencia en 'ubiIncidencia'
+	// Usamos toString en ubiIncidencia para que pase un String
+	const ciudad = await pool.query('SELECT idCiudad FROM db_cuidandomiciudad.ciudades WHERE nomCiudad = ?', [ubiIncidencia].toString());
+
+	const newIncidencia = {
+		idUsuario: 1,
+		idCiudad: ciudad[0].idCiudad,
+		nomIncidencia,
+		menIncidencia,
+		locIncidencia,
+		tipIncidencia,
+		ubiIncidencia
+	};
+
+	console.log(newIncidencia);
+	// res.send('Actualizado');
+
+	// Hacemos la consulta para actualizar los datos
+	await pool.query('UPDATE incidencias SET ? WHERE idIncidencias = ?', [newIncidencia, id]);
+	res.redirect('/incidencias');
+});
 
 // Exportamos el router
 module.exports = router;
