@@ -97,5 +97,13 @@ router.get('/delete/:id', async (req, res) => {
 	res.redirect('/incidencias');
 });
 
+// RUTA /incidencias/edit para editar Incidencias
+router.get('/edit/:id', async (req, res) => {
+	const { id } = req.params;
+	const incidencias = await pool.query('SELECT * FROM incidencias WHERE idIncidencias = ?', [id]);
+	// console.log(incidencias[0]);
+	res.render('incidencias/edit', {incidencias: incidencias[0]});
+})
+
 // Exportamos el router
 module.exports = router;
