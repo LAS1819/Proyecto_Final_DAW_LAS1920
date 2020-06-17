@@ -67,7 +67,7 @@ router.post('/add', async (req, res) => {
 	// Como esta petición a la base de datos va a tardar,
 	// usamos Async/Await
 	await pool.query('INSERT INTO db_cuidandomiciudad.incidencias SET ?', [newIncidencia]);
-	res.send('Recibido');
+	res.redirect('/incidencias');
 });
 
 // Añadimos una ruta para la raíz incidencias, donde se listarán
@@ -84,6 +84,13 @@ router.get('/', async (req, res) => {
 		// TO DO: Averiguar cómo pasar link hacia imagen en cada iteración
 		url: '/uploads/'
 	});
+});
+
+// Añadimos una ruta para escuchar los eventos de eliminación
+router.get('/delete/:id', async (req, res) => {
+	const { id } = req.params;
+	console.log(id);
+	res.send('Eliminado');
 });
 
 // Exportamos el router
