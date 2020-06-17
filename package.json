@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/LAS1819/Proyecto_Final_DAW_LAS1920#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
