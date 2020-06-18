@@ -2,16 +2,33 @@
 // Almacenaremos las rutas para las autenticaciones de usuario y todo lo relacionado
 const express = require('express');
 const router = express.Router();
-
+const passport = require('passport');
 // Creamos la ruta hacia /signup, donde se hará el registro de usuario
 router.get('/signup', (req, res) => {
 	res.render('auth/signup');
 });
 
 // RUTA POST hacia signup, para recibir datos
-router.post('/signup', (req, res) => {
-	console.log(req.body);
-	res.send('Recibido');
+// router.post('/signup', (req, res) => {
+// 	console.warn('Entrando en POST /signup...');
+// 	res.send('Recibido');
+// 	passport.authenticate('local.signup', {
+// 		successRedirect: '/profile',
+// 		failureRedirect: '/signup',
+// 		failureFlash: true
+// 	});
+// 	console.warn('Saliendo de POST /signup...');
+// });
+
+// Método POST más sencillo de escribir (en comparación con el anterior)
+router.post('/signup', passport.authenticate('local.signup', {
+	successRedirect: '/profile',
+	failureRedirect: '/signup',
+	failureFlash: true
+}));
+
+router.get('/profile', (req, res) => {
+	res.send("Este es tu perfil");
 });
 
 module.exports = router;

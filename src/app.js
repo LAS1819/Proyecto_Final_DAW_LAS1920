@@ -19,14 +19,22 @@ const flash = require('connect-flash');
 const session = require('express-session');
 // Requerimos 'express-mysql-session' para guardar las sesiones en la base de datos
 const MySQLStore = require('express-mysql-session');
+// Requerimos 'passport' para usarlo como validación del usuario
+const passport = require('passport');
 
 // Requerimos las claves de nuestra BD de MySQL para poder guardar la sesión
 // Este archivo está oculto en el repositorio GitHub, así que es necesario crearlo con las credenciales de cada uno que quiera probarlo
 const { database } = require('./keys');
 
-// -------Inicializaciones--------
+// ##########################################
+// -------INICIALIZACIONES-------
+// ##########################################
+
 // Iniciamos conexión
 const app = express();
+
+// Requerimos nuestro módulo de passport con la autenticación creada
+require('./lib/passport');
 
 // ##########################################
 // -----------CONFIGURACIÓN------------------
@@ -94,6 +102,11 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 // Para enviar y recibir JSON
 app.use(express.json());
+
+// Inicializamos passport
+app.use(passport.initialize());
+// Le otorgamos una sesión
+app.use(passport.session());
 
 
 
