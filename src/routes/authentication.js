@@ -27,6 +27,11 @@ router.post('/signup', passport.authenticate('local.signup', {
 	failureFlash: true
 }));
 
+// Ruta signin a través de GET
+router.get('/signin', (req, res) => {
+	res.render('auth/signin');
+});
+
 router.get('/profile', (req, res) => {
 	res.send("Este es tu perfil");
 });

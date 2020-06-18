@@ -18,7 +18,7 @@ passport.use('local.signup', new LocalStrategy({
 	passwordField: 'pasUsuario',
 	passReqToCallback: true
 }, async (req, username, password, done) => {
-	console.log('Entrando en passport.use.......');
+	console.log('Entrando en "passport.use".......'.red);
 	console.log(req.body);
 
 	const { nomUsuario, apeUsuario, dirUsuario, ciuUsuario, corUsuario, telUsuario } = req.body;
@@ -38,12 +38,20 @@ passport.use('local.signup', new LocalStrategy({
 		dirUsuario		
 	};
 
-	console.warn(newUser);
+	// console.warn(newUser);
 	newUser.pasUsuario = await helpers.encryptPassword(password);
 	const result = await pool.query('INSERT INTO usuarios SET ?', [newUser]);
-	console.log(result);
+	// console.log(result);
+	// Como no sabemos cuál es el id del usuario, lo guardamos obteniéndolo del resultado anterior
+	newUser.id = result.insertId;
+	return done(null, newUser);
 }));
 
-// passport.serializeUser((usr, done) => {
+passport.serializeUser((user, done) => {
+	done(null, user.id);
+});
 
-// });
+passport.deserializeUser(async (id, done) => {
+	const rows = await pool.query('SELECT * FROM usuarios WHERE idUsuario = ?', [id])
+	done(null, rows[0]);
+});
