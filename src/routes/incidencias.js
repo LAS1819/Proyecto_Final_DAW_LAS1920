@@ -83,7 +83,7 @@ router.post('/add', isLoggedIn, async (req, res) => {
 router.get('/', async (req, res) => {
 	// Pedimos todas las incidencias y las guardamos en una constante
 	// llamada 'incidencias'
-	const incidencias = await pool.query('SELECT * FROM incidencias');
+	const incidencias = await pool.query('SELECT DISTINCT * FROM db_cuidandomiciudad.incidencias inc, db_cuidandomiciudad.usuarios usu WHERE inc.idUsuario = usu.idUsuario ORDER BY inc.fcCreacion ASC;');
 	// Mostramos los datos recibidos en consola
 	console.warn(incidencias);
 	res.render('incidencias/list', {
