@@ -4,11 +4,11 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-// Requerimos el métdo isLoggedIn para usarlo en cualquier ruta que queramos
-const { isLoggedIn } = require('../lib/auth');
+// Requerimos el métdo isLoggedIn e isNotLoggedIn para usarlo en cualquier ruta que queramos
+const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 
 // Creamos la ruta hacia /signup, donde se hará el registro de usuario
-router.get('/signup', (req, res) => {
+router.get('/signup', isNotLoggedIn, (req, res) => {
 	res.render('auth/signup');
 });
 
@@ -25,19 +25,19 @@ router.get('/signup', (req, res) => {
 // });
 
 // Método POST más sencillo de escribir (en comparación con el anterior)
-router.post('/signup', passport.authenticate('local.signup', {
+router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
 	successRedirect: '/profile',
 	failureRedirect: '/signup',
 	failureFlash: true
 }));
 
 // Ruta SIGNIN a través de GET
-router.get('/signin', (req, res) => {
+router.get('/signin', isNotLoggedIn, (req, res) => {
 	res.render('auth/signin');
 });
 
 // Ruta SIGNIN a través de POST
-router.post('/signin', (req, res, next) => {
+router.post('/signin', isNotLoggedIn, (req, res, next) => {
 	passport.authenticate('local.signin', {
 		successRedirect: '/profile',
 		failureRedirect: '/signin',
@@ -51,7 +51,7 @@ router.get('/profile', isLoggedIn, (req, res) => {
 });
 
 // GET hacia LOGOUT
-router.get('/logout', (req, res) => {
+router.get('/logout', isLoggedIn, (req, res) => {
 	// Usamos método de Passport 'logOut' para cerrar sesión
 	req.logOut();
 	// Lo reenviamos a la pantalla principal
