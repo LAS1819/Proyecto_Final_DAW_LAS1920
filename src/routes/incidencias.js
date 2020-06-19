@@ -53,7 +53,7 @@ router.post('/add', isLoggedIn, async (req, res) => {
 	// Guardamos los datos en un objeto llamado newIncidencia
 	// De momento dejamos la propiedad idUsuario como uno por defecto hasta que sepamos validar usuario
 	const newIncidencia = {
-		idUsuario: 1,
+		idUsuario: req.user.idUsuario,
 		idCiudad: ciudad[0].idCiudad,
 		nomIncidencia,
 		menIncidencia,
@@ -89,7 +89,20 @@ router.get('/', async (req, res) => {
 	res.render('incidencias/list', {
 		incidencias,
 		title: 'Incidencias',
-		// TO DO: Averiguar cómo pasar link hacia imagen en cada iteración
+		url: '/uploads/'
+	});
+});
+
+// Ruta GET de MIS INCIDENCIAS (/mylist)
+router.get('/mylist', isLoggedIn, async (req, res) => {
+	// Pedimos todas las incidencias y las guardamos en una constante
+	// llamada 'incidencias'
+	const incidencias = await pool.query('SELECT * FROM incidencias WHERE idUsuario = ?', [req.user.idUsuario]);
+	// Mostramos los datos recibidos en consola
+	console.warn(incidencias);
+	res.render('incidencias/list', {
+		incidencias,
+		title: 'Incidencias',
 		url: '/uploads/'
 	});
 });

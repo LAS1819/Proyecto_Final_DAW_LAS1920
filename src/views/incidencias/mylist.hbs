@@ -1,0 +1,31 @@
+{{!-- mylist.hbs --}}
+{{!-- Aquí listaremos todas las incidencias que tiene el usuario en cuestión --}}
+<div class="row m-auto">
+	{{!-- Por cada incidencia... --}}
+	{{#each incidencias}}
+		<div class="col-md mb-2">
+			<div class="card text-dark" style="width: 20rem; height: 100%;">
+				<img class="img-fluid" src="/uploads/{{ imgIncidencia }}">
+				<div class="card-body">
+					<a href="#">
+						<h3 class="card-title">
+							{{ nomIncidencia }}
+						</h3>
+					</a>
+					<p class="card-text text-dark">{{ menIncidencia }}</p>
+					<p>{{ timeago fcCreacion }}</p>
+					<a href="#" class="btn btn-cmc">Ver</a>
+					<a href="/incidencias/delete/{{idIncidencias}}" class="btn btn-danger">Borrar incidencia</a>
+					<a href="/incidencias/edit/{{idIncidencias}}" class="btn btn-secondary">Editar</a>
+				</div>
+			</div>
+		</div>
+	{{else}}
+		<div class="col mx-auto">
+			<div class="card card-body text-center">
+				<p>No hay incidencias guardadas todavía.</p>
+				<a href="/incidencias/add">¡Crea la primera incidencia!</a>
+			</div>
+		</div>
+	{{/each}}
+</div>
