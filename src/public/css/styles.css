@@ -179,9 +179,40 @@ a[data-toggle="collapse"] {
 	max-width: 160px;
 	margin-left: 42px;
 }
-/*------------------------------*/
+/*-------BOTONES PERSONALIZADOS-------*/
+
+.boton-accion:hover {
+	color: #995be3;
+	transform: scale(0.9);
+}
 
 .btn-cmc {
 	background: #995be3;
 	color: white;
 }
+
+.btn-cmc:hover {
+	background: #b286e7;
+}
+
+
+/*#################################*/
+/*---------ESTILO TARJETAS----------*/
+/*#################################*/
+
+.tarjeta {
+	width: 20rem;
+	height: 100%;
+	background-color: #2A2438;
+	border-color: #995be3;
+}
+
+.tarjeta .tarjeta-imagen {
+	height: 12rem;
+	overflow: hidden;
+}
+
+.tarjeta .tarjeta-cabecera {
+	background-color: #411E8F;
+}
+

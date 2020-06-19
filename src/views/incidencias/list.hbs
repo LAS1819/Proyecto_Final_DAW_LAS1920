@@ -3,22 +3,24 @@
 <div class="row m-auto">
 	{{!-- Por cada incidencias... --}}
 	{{#each incidencias}}
-		<div class="col-md mb-2">
-			<div class="card text-dark" style="width: 20rem; height: 100%;">
-				<img class="img-fluid" src="/uploads/{{ imgIncidencia }}">
-				<div class="card-body">
-					<a href="#">
-						<h3 class="card-title">
-							{{ nomIncidencia }}
-						</h3>
-					</a>
-					<p class="card-text text-dark">{{ menIncidencia }}</p>
-					<p>{{ timeago fcCreacion }}</p>
-					<a href="#" class="btn btn-cmc">Ver</a>
-					<a href="/incidencias/delete/{{idIncidencias}}" class="btn btn-danger">Borrar incidencia</a>
-					<a href="/incidencias/edit/{{idIncidencias}}" class="btn btn-secondary">Editar</a>
+		<div class="col-md mb-2 mt-3">
+			<div class="card tarjeta">
+				<img class="tarjeta-imagen" src="/uploads/{{ imgIncidencia }}">
+				<div class="card-header tarjeta-cabecera">					
+					<h5 class="card-title titulo">{{ nomIncidencia }}</h5>					
+					<h6 class="card-subtitle mb-2 text-secondary">{{ ubiIncidencia }}</h6>					
+				</div>
+				<div class="card-body tarjeta-cuerpo">
+					<p class="card-text">{{ menIncidencia }}</p>
+					<small class="mb-2">{{ timeago fcCreacion }}</small>
+				</div>
+				<div class="card-footer text-center mt-3">
+					<a href="#" class="btn btn-cmc boton-accion">Ver</a>
+					<a href="/incidencias/delete/{{idIncidencias}}" class="btn btn-danger boton-accion">Borrar</a>
+					<a href="/incidencias/edit/{{idIncidencias}}" class="btn btn-secondary boton-accion">Editar</a>
 				</div>
 			</div>
+			
 		</div>
 	{{else}}
 		<div class="col mx-auto">
