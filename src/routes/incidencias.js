@@ -12,9 +12,13 @@ const router = express.Router();
 // Requerimos el módulo de databse,js
 const pool = require('../database');
 
+// Requerimos el método de passport que hemos creado en auth
+const { isLoggedIn } = require('../lib/auth');
+
 //Ruta para GET de '/add' para mostrar IU del formulario
 // para añadir incidencias
-router.get('/add', (req, res) => {
+// Protegemos en caso de no ser un usuario registrado
+router.get('/add', isLoggedIn,  (req, res) => {
 	res.render('incidencias/add', {
 		title: 'Añadir Incidencia'
 	});
@@ -23,7 +27,7 @@ router.get('/add', (req, res) => {
 
 // Para recibir datos del formulario necesitamos tener
 // un ruter hacia la misma ruta pero para peticiones POST
-router.post('/add', async (req, res) => {
+router.post('/add', isLoggedIn, async (req, res) => {
 	// Usamos 'req.body' para capturar el valor de los parámetros
 	// name de los inputs del formulario
 	// Los mostramos en pantalla para ver si todo ha ido correcto
@@ -91,7 +95,7 @@ router.get('/', async (req, res) => {
 });
 
 // Añadimos una ruta para escuchar los eventos de eliminación
-router.get('/delete/:id', async (req, res) => {
+router.get('/delete/:id', isLoggedIn, async (req, res) => {
 	// Recogemos el idIncidencias de la incidencia
 	const { id } = req.params;
 	// console.log(id);
@@ -105,7 +109,7 @@ router.get('/delete/:id', async (req, res) => {
 });
 
 // RUTA /incidencias/edit para editar Incidencias
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params;
 	const incidencias = await pool.query('SELECT * FROM incidencias WHERE idIncidencias = ?', [id]);
 	
@@ -114,7 +118,7 @@ router.get('/edit/:id', async (req, res) => {
 
 // RUTA PARA RECIBIR DATOS INCIDENCIA ACTUALIZADA
 // POST
-router.post('/edit/:id', async (req, res) => {
+router.post('/edit/:id', isLoggedIn, async (req, res) => {
 	const { id } = req.params;
 	console.log(req.body);
 	const { nomIncidencia, locIncidencia, tipIncidencia, ubiIncidencia, menIncidencia } = req.body;

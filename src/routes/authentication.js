@@ -3,6 +3,10 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+
+// Requerimos el métdo isLoggedIn para usarlo en cualquier ruta que queramos
+const { isLoggedIn } = require('../lib/auth');
+
 // Creamos la ruta hacia /signup, donde se hará el registro de usuario
 router.get('/signup', (req, res) => {
 	res.render('auth/signup');
@@ -41,8 +45,19 @@ router.post('/signin', (req, res, next) => {
 	})(req, res, next);
 });
 
-router.get('/profile', (req, res) => {
-	res.send("Este es tu perfil");
+// GET hacia PROFILE
+router.get('/profile', isLoggedIn, (req, res) => {
+	res.render('profile');
 });
+
+// GET hacia LOGOUT
+router.get('/logout', (req, res) => {
+	// Usamos método de Passport 'logOut' para cerrar sesión
+	req.logOut();
+	// Lo reenviamos a la pantalla principal
+	res.redirect('/');
+});
+
+
 
 module.exports = router;
