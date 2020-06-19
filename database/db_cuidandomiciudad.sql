@@ -62,8 +62,6 @@ CREATE TABLE `db_cuidandomiciudad`.`usuarios` (
     ON UPDATE NO ACTION)
 COMMENT = 'Tabla de usuarios';
 
-
-
 -- Tabla usuarios PREMIUM
 CREATE TABLE `db_cuidandomiciudad`.`premium` (
   `idPremium` INT NOT NULL AUTO_INCREMENT,

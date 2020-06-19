@@ -138,6 +138,9 @@ app.use((req, res, next) => {
 	// Guardamos el valor de succes en una variable local (app.locals)
 	// Así podemos tener disponible este mensaje en todas nuestras vistas
 	app.locals.success = req.flash('success');
+
+	app.locals.message = req.flash('message');
+	
 	next();
 });
 

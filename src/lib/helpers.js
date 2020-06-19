@@ -19,8 +19,10 @@ helpers.encryptPassword = async (password) => {
 
 helpers.matchPassword = async (password, savedPassword) => {
 	console.warn('Entrando en "matchPassword"'.red);
+	console.warn(password);
+	console.warn(savedPassword);
 	try {
-		await bcrypt.compare(password, savedPassword);
+		return await bcrypt.compare(password, savedPassword);
 	} catch(e) {
 		// statements
 		console.log(e);

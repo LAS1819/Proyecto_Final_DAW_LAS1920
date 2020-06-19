@@ -9,10 +9,34 @@ const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../database');
 
 // Traemos los métodos helpers
-const helpers = require('../lib/helpers');
+const helpers = require('./helpers');
 
 console.warn('Entrando en "lib/passport.js"'.red);
 
+// Estrategia para el LOGIN
+passport.use('local.signin', new LocalStrategy({
+	usernameField: 'nickUsuario',
+	passwordField: 'pasUsuario',
+	passReqToCallback: true
+}, async (req, username, password, done) => {
+	console.warn(req.body);
+	console.warn(username);
+	console.warn(password);
+	const rows = await pool.query('SELECT * FROM usuarios WHERE nickUsuario = ?', [username]);
+	if (rows.length > 0) {
+		const user = rows[0];
+		const validPassword = await helpers.matchPassword(password, user.pasUsuario);
+		if (validPassword) {
+			done(null, user, req.flash('success', 'Bienvenido ' + user.nickUsuario));
+		} else {
+			done(null, false, req.flash('message', 'Password incorrecto'));
+		}
+	} else {
+		return done(null, false, req.flash('message', 'El nombre de usuario no existe'));
+	}
+}));
+
+// Estrategia para el REGISTRO
 passport.use('local.signup', new LocalStrategy({
 	usernameField: 'nickUsuario',
 	passwordField: 'pasUsuario',
@@ -48,7 +72,10 @@ passport.use('local.signup', new LocalStrategy({
 }));
 
 passport.serializeUser((user, done) => {
-	done(null, user.id);
+	console.warn('Entrando en "serializeUser"');
+	console.warn(user);
+	console.warn(done);
+	done(null, user.idUsuario);
 });
 
 passport.deserializeUser(async (id, done) => {
