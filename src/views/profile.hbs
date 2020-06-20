@@ -1,15 +1,51 @@
 {{!-- profile.hbs --}}
 <div class="container p-4">
 	<div class="row">
-		<div class="col-md mx-auto text-dark">
-			<div class="card text-center">
+		<div class="col-md mx-auto">
+			<div class="card text-center tarjeta">
 				<div class="card-body">
 					<h3 class="titulo">Bienvenido {{user.nomUsuario}}</h3>
 					<h4>{{user.nickUsuario}}</h4>
-					<a href="/incidencias" class="btn btn-primary m-4">
+					<a href="/incidencias" class="btn btn-cmc boton-accion m-4">
 						Añade una incidencia
 					</a>
 
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md">
+			<div class="card tarjeta">
+		  		<div class="card-header titulo text-center h4">
+		    		Datos Personales
+		  		</div>
+		  		<ul class="list-group list-group-flush">
+		  			<li class="list-group-item bg-dark">
+		    			<p>Nombre: {{ user.nomUsuario }} {{ user.apeUsuario }}</p>
+		    			<a href="#" class="btn btn-cmc boton-accion p-0">Editar</a>
+		    		</li>
+		    		<li class="list-group-item bg-dark">
+		    			<p>Apodo: {{ user.nickUsuario }}</p>
+		    			<a href="#" class="btn btn-cmc boton-accion p-0">Editar</a>
+		    		</li>
+		    		<li class="list-group-item bg-dark">
+		    			<p>Correo electrónico: {{ user.corUsuario }}</p>
+		    			<a href="#" class="btn btn-cmc boton-accion p-0">Editar</a>
+		    		</li>
+		    		<li class="list-group-item bg-dark">
+		    			<p>Teléfono: {{ user.telUsuario }}</p>
+		    			<a href="#" class="btn btn-cmc boton-accion p-0">Editar</a>
+		    		</li>
+		    		
+		  		</ul>
+			</div>
+		</div>
+		<div class="col-md">
+			<div class="card tarjeta">
+				<div class="card-header titulo text-center h4">
+					Imagen de Perfil
 				</div>
 			</div>
 		</div>

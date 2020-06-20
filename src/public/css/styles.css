@@ -197,6 +197,35 @@ a[data-toggle="collapse"] {
 
 
 /*#################################*/
+/*------ESTILO TÍTULO SECCIÓN-------*/
+/*#################################*/
+
+.titulo-seccion {
+	width: 100%;
+	margin-top: 10px;
+}
+
+/*#################################*/
+/*------TARJETAS JUMBOTRON INICIO---*/
+/*#################################*/
+
+.tarjeta-inicio {
+	border: 1px solid #995be3;
+	height: 85%;
+	margin-bottom: 10px;
+}
+
+.tarjeta-inicio:hover {
+	border: 1px solid white;
+}
+
+.tarjeta-inicio .tarjeta-pie {
+	margin-top: 0 auto;
+	margin-bottom: 0 auto;
+}
+
+
+/*#################################*/
 /*---------ESTILO TARJETAS----------*/
 /*#################################*/
 
@@ -216,3 +245,25 @@ a[data-toggle="collapse"] {
 	background-color: #411E8F;
 }
 
+
+/*#################################*/
+/*---------ESTILO TARJETAS formulario------*/
+/*#################################*/
+
+.tarjeta-formulario {
+	width: 200%;
+	height: 100%;
+	background-color: #2A2438;
+	border-color: #995be3;
+	margin-left: 200%;
+}
+
+.tarjeta-formulario .tarjeta-cabecera {
+	background-color: #411E8F;
+}
+
+@media screen and (max-width: 991px) {
+	.tarjeta-formulario {
+		margin-left: 50%;
+	}
+}

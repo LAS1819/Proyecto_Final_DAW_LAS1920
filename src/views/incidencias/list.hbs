@@ -1,5 +1,11 @@
 {{!-- list.hbs --}}
 {{!-- Aquí listaremos todas las incidencias que haya en la BD --}}
+<div class="row">
+	<div class="col titulo-seccion">
+		<h1 class="titulo">Incidencias</h1>
+		<hr>
+	</div>
+</div>
 <div class="row m-auto">
 	{{!-- Por cada incidencias... --}}
 	{{#each incidencias}}
@@ -15,7 +21,7 @@
 					<small class="mb-2">{{ timeago fcCreacion }}</small>
 				</div>
 				<div class="card-footer text-center mt-3">
-					<a href="#" class="btn btn-cmc boton-accion">Ver</a>
+					<a href="/incidencias/see/{{idIncidencias}}" class="btn btn-cmc boton-accion">Ver</a>
 					<a href="/incidencias/delete/{{idIncidencias}}" class="btn btn-danger boton-accion">Borrar</a>
 					<a href="/incidencias/edit/{{idIncidencias}}" class="btn btn-secondary boton-accion">Editar</a>
 				</div>

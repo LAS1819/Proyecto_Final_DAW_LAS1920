@@ -67,7 +67,7 @@ passport.use('local.signup', new LocalStrategy({
 	const result = await pool.query('INSERT INTO usuarios SET ?', [newUser]);
 	// console.log(result);
 	// Como no sabemos cuál es el id del usuario, lo guardamos obteniéndolo del resultado anterior
-	newUser.id = result.insertId;
+	newUser.idUsuario = result.insertId;
 	return done(null, newUser);
 }));
 
