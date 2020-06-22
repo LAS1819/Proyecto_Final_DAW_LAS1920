@@ -255,7 +255,7 @@ a[data-toggle="collapse"] {
 	height: 100%;
 	background-color: #2A2438;
 	border-color: #995be3;
-	margin-left: 200%;
+	margin: 0 auto;
 }
 
 .tarjeta-formulario .tarjeta-cabecera {
