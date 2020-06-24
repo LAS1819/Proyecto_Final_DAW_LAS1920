@@ -1,19 +1,27 @@
 {{!-- mylist.hbs --}}
+<div class="row m-auto">
+	<div class="col">
+		<h1 class="titulo titulo-seccion">Mis Incidencias</h1>
+		<hr>
+	</div>
+</div>
 {{!-- Aquí listaremos todas las incidencias que tiene el usuario en cuestión --}}
 <div class="row m-auto">
 	{{!-- Por cada incidencia... --}}
 	{{#each incidencias}}
-		<div class="col-md mb-2">
-			<div class="card text-dark" style="width: 20rem; height: 100%;">
-				<img class="img-fluid" src="/uploads/{{ imgIncidencia }}">
-				<div class="card-body">
-					<a href="#">
-						<h3 class="card-title">
-							{{ nomIncidencia }}
-						</h3>
-					</a>
-					<p class="card-text text-dark">{{ menIncidencia }}</p>
-					<p>{{ timeago fcCreacion }}</p>
+		<div class="col-md mb-2 mt-3">
+			<div class="card tarjeta">
+				<img class="tarjeta-imagen" src="/uploads/{{ imgIncidencia }}">
+				<div class="card-header tarjeta-cabecera">
+					<h5 class="card-title titulo">{{ nomIncidencia }}</h5>
+					<h6 class="card-subtitle mb-2 text-secondary">{{ nickUsuario }} - {{ ubiIncidencia }}</h6>
+				</div>
+
+				<div class="card-body tarjeta-cuerpo">
+					<p class="card-text">{{ menIncidencia }}</p>
+					<small class="mb-2">{{ timeago fcCreacion }}</small>
+				</div>
+				<div class="card-footer text-center mt-3">
 					<a href="#" class="btn btn-cmc">Ver</a>
 					<a href="/incidencias/delete/{{idIncidencias}}" class="btn btn-danger">Borrar</a>
 					<!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticModal"></button> -->

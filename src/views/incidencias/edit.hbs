@@ -1,38 +1,57 @@
 {{!-- edit.hbs--}}
-{{!-- formulario para editar las incidencias --}}
 <div class="row m-auto">
 	<div class="col">
-		<div class="card">
-			<div class="card-body">
+		<h1 class="titulo titulo-seccion">Editar Incidencia</h1>
+		<hr>
+	</div>
+</div>
+{{!-- formulario para editar las incidencias --}}
+<div class="row m-auto">
+	<div class="col-md mb-2 mt-3">
+		<div class="card text-center tarjeta-formulario">
+			<div class="card-body tarjeta-cuerpo">
 				{{!-- Añadimos la propiedad 'enctype' para aceptar imágenes desde el formulario --}}
 				<form action="/incidencias/edit/{{incidencia.idIncidencias}}" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
+						<label for="inputNombre" class="text-white">Nombre de la incidencia</label>
 						{{!-- Los atributos name de cada input contendrá la referencia al nombre de cada columna de la tabla INCIDENCIAS --}}
-						<input type="text" value="{{incidencia.nomIncidencia}}" class="form-control" name="nomIncidencia" placeholder="Nombre de la incidencia" autofocus>
+						<input type="text" value="{{incidencia.nomIncidencia}}" class="form-control" name="nomIncidencia" placeholder="Nombre de la incidencia" id="inputNombre" required autofocus>
 					</div>
 					<div class="form-group">
-						<input type="text" value="{{incidencia.locIncidencia}}" class="form-control" name="locIncidencia" placeholder="Lugar de la incidencia">
+						<label for="inputLugar" class="text-white">Lugar de la incidencia</label>
+						<input type="text" value="{{incidencia.locIncidencia}}" class="form-control" name="locIncidencia" placeholder="Lugar de la incidencia" id="inputLugar" required>
 					</div>
 					<div class="form-group">
-						<select id="inputTipo" value="{{incidencia.tipIncidencia}}" class="form-control" name="tipIncidencia">
+						<label for="inputTipo" class="text-white">Tipo de Incidencia</label>
+						<select id="inputTipo" value="{{incidencia.tipIncidencia}}" class="form-control" name="tipIncidencia" required>
 							<option>Selecciona...</option>
 							<option>Parques</option>
 							<option>Fachadas</option>
 							<option>Desperfectos</option>
 							<option>Limpieza</option>
-							<option>Manifestacions</option>
+							<option>Manifestaciones</option>
 							<option>Abandono</option>
 							<option>Peligro</option>
 						</select>
 					</div>
 					<div class="form-group">
-						<input id="inputCiudad" class="form-control" type="text" value="{{incidencia.ubiIncidencia}}" name="ubiIncidencia" placeholder="Nombre de la Ciudad">
+						<label for="inputCiudad" class="text-white">Ciudad</label>
+						<!-- <input id="inputCiudad" class="form-control" type="text" value="{{incidencia.ubiIncidencia}}" name="ubiIncidencia" placeholder="Nombre de la Ciudad"> -->
+						<select id="inputCiudad" class="form-control" name="ubiIncidencia" required>
+							<option selected>Selecciona...</option>
+							<option>Novelda</option>
+							<option>Aspe</option>
+							<option>Monforte del Cid</option>
+							<option>Elda</option>
+							<option>Romana, La</option>
+						</select>
 					</div>
 					<div class="form-group">
-						<textarea name="menIncidencia" rows="2" class="form-control" placeholder="Mensaje">{{incidencia.menIncidencia}}</textarea>
+						<label for="txtMensaje" class="text-white">Mensaje</label>
+						<textarea name="menIncidencia" rows="2" class="form-control" placeholder="Mensaje" id="txtMensaje">{{incidencia.menIncidencia}}</textarea>
 					</div>
 					<div class="form-group">
-						<button class="btn btn-success btn-block">
+						<button class="btn btn-cmc btn-block">
 							Guardar
 						</button>
 					</div>

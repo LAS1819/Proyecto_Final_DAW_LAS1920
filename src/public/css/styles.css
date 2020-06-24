@@ -32,6 +32,11 @@ body {
 	font-family: Neucha;
 }
 
+.titulo-seccion {
+	background-color: #411E8F;
+	padding: 5px;
+}
+
 .pie-pagina {
 	background-color: #411E8F;
 }
