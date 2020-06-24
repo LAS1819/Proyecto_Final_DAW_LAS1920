@@ -129,7 +129,7 @@ router.get('/edit/:id', isLoggedIn, async (req, res) => {
 	const incidencias = await pool.query('SELECT * FROM incidencias WHERE idIncidencias = ?', [id]);
 	
 	res.render('incidencias/edit', {incidencia: incidencias[0]});
-})
+});
 
 // RUTA PARA RECIBIR DATOS INCIDENCIA ACTUALIZADA
 // POST
@@ -158,6 +158,17 @@ router.post('/edit/:id', isLoggedIn, async (req, res) => {
 	await pool.query('UPDATE incidencias SET ? WHERE idIncidencias = ?', [newIncidencia, id]);
 	req.flash('success', 'Incidencia actualizada satisfactoriamente');
 	res.redirect('/incidencias');
+});
+
+// RUTA PARA VER UNA INCIDENCIA CONCRETA
+router.get('/see/:id', async (req, res) => {
+	// Capturamos el id de la incidencia que se quiere ver
+	const { id } = req.params;
+	// Capturamos la incidencia en questión mediante una consulta a la BD
+	const incidencia = await pool.query('SELECT * FROM incidencias WHERE idIncidencias = ?', [id]);
+
+	// Respondemos renderizando la ruta '/incidencias/see' y le pasamos los datos de la incidencia capturada
+	res.render('incidencias/see', {incidencia: incidencia[0]});
 });
 
 // Exportamos el router

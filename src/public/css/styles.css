@@ -42,6 +42,8 @@ body {
 }
 /*----------Estilos Contenido y Sidebar Colapsable---------*/
 .wrapper {
+	/*TO DO: La propiedad display del elemento .wrapper, hace que todo se descudre
+		Sin embargo, si se quita, el sidebar queda totalmente roto. Averiguar cómo arreglarlo*/
 	display: flex;
 	width: 100%;
 	/*align-items: stretch;*/
@@ -271,6 +273,13 @@ a[data-toggle="collapse"] {
 	.tarjeta-formulario {
 		margin-left: 50%;
 	}
+}
+
+/*#################################*/
+/*---------ESTILO TARJETA VER INCIDENCIA------*/
+/*#################################*/
+.tarjeta-ver {
+	width: 100vh;
 }
 
 
