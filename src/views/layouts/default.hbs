@@ -7,6 +7,8 @@
 	<title>{{ title }}</title>
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<!-- Icono -->
+	<link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
 	<!-- Fuentes de GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css2?family=Neucha&family=Ubuntu:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
 	<!-- Añadir css de bootstrap -->
@@ -54,7 +56,9 @@
 					<div class="body-content">
 						{{> message}}
 
-						{{{body}}}	
+						{{{body}}}
+
+						{{> modal}}
 					</div>
 						
 				</div>

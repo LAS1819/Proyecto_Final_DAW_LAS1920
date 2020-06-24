@@ -100,9 +100,11 @@ router.get('/mylist', isLoggedIn, async (req, res) => {
 	const incidencias = await pool.query('SELECT * FROM incidencias WHERE idUsuario = ?', [req.user.idUsuario]);
 	// Mostramos los datos recibidos en consola
 	console.warn(incidencias);
-	res.render('incidencias/list', {
+
+	// Renderizamos la vista
+	res.render('incidencias/mylist', {
 		incidencias,
-		title: 'Incidencias',
+		title: 'Mis Incidencias',
 		url: '/uploads/'
 	});
 });
