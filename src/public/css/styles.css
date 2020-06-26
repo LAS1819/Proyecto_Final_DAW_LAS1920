@@ -3,6 +3,7 @@ body {
 	background-color: #352f44;
 	font-family: Ubuntu;
 	color: white;
+	min-height: 100vh;
 }
 
 .cabecera {
@@ -46,7 +47,7 @@ body {
 		Sin embargo, si se quita, el sidebar queda totalmente roto. Averiguar cómo arreglarlo*/
 	display: flex;
 	width: 100%;
-	/*align-items: stretch;*/
+	align-items: stretch;
 }
 
 #sidebar {
@@ -257,12 +258,12 @@ a[data-toggle="collapse"] {
 /*---------ESTILO TARJETAS formulario------*/
 /*#################################*/
 
-.tarjeta-formulario {
+.tarjeta-formulario, .tarjeta-ver {
 	width: 200%;
 	height: 100%;
 	background-color: #2A2438;
 	border-color: #995be3;
-	margin: 0 auto;
+	/*margin: 0 auto;*/
 }
 
 .tarjeta-formulario .tarjeta-cabecera {
@@ -280,6 +281,7 @@ a[data-toggle="collapse"] {
 /*#################################*/
 .tarjeta-ver {
 	width: 100vh;
+	margin-bottom: 20px;
 }
 
 

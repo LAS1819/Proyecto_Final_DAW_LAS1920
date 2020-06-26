@@ -168,7 +168,7 @@ router.get('/see/:id', async (req, res) => {
 	const incidencia = await pool.query('SELECT * FROM incidencias WHERE idIncidencias = ?', [id]);
 
 	// Respondemos renderizando la ruta '/incidencias/see' y le pasamos los datos de la incidencia capturada
-	res.render('incidencias/see', {incidencia: incidencia[0]});
+	res.render('incidencias/see', {incidencia: incidencia[0], title: 'Ver Incidencia'});
 });
 
 // Exportamos el router
