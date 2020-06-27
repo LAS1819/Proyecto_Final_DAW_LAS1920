@@ -47,6 +47,18 @@
 				<div class="card-header titulo text-center h4">
 					Imagen de Perfil
 				</div>
+				<img class="card-img-top" src="/uploads/{{ user.imgUsuario }}">
+				<div class="card-footer">
+					<form action="/profile/{{ user.idUsuario }}" method="POST" enctype="multipart/form-data">
+						<div class="form-group">
+							<label for="inputImagen" class="text-white">Añadir imagen de perfil</label>
+							<input type="file" class="form-control-file" name="imgIncidencia" id="inputImagen">
+						</div>
+						<div class="form-group">
+							<button class="btn btn-cmc">Cambiar imagen</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -4,6 +4,9 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
+// Requerimos el módulo de databse,js
+const pool = require('../database');
+
 // Requerimos el métdo isLoggedIn e isNotLoggedIn para usarlo en cualquier ruta que queramos
 const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 
@@ -48,6 +51,17 @@ router.post('/signin', isNotLoggedIn, (req, res, next) => {
 // GET hacia PROFILE
 router.get('/profile', isLoggedIn, (req, res) => {
 	res.render('profile');
+});
+
+// POST PARA ACUTALIZAR DATOS DEL PROFILE PERSONAL
+router.post('/profile/:id', isLoggedIn, async (req, res) => {
+	const { id } = req.params;
+	const { filename } = req.file;
+	console.log(id);
+	console.log(filename);
+	await pool.query('UPDATE `db_cuidandomiciudad`.`usuarios` SET `imgUsuario` = ? WHERE (`idUsuario` = ?);', [filename, id]);
+	req.flash('succes', 'Imagen de usuario actualizada');
+	res.redirect('/profile');
 });
 
 // GET hacia LOGOUT
